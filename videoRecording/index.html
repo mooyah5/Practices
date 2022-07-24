@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="camera.css">
+  <title>녹화 기능 연습하기</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="button-container">
+      <button class="test-button">테스트</button>
+      <button class="record-button">녹화</button>
+      <button class="stop-button">중지</button>
+      <button class="play-button">녹화보기</button>
+      <a class="download-button" download>다운로드</a>
+    </div>
+    <div class="video-container">
+      <div class="video-item">
+        <h2>Preview</h2>
+        <video id="preview" autoplay muted></video>
+      </div>
+      <div class="video-item">
+        <h2>Recording</h2>
+        <video id="recording"></video>
+      </div>
+    </div>
+  </div>
+  <script src="camera.js"></script>
+</body>
+</html>

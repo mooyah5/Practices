@@ -27,7 +27,7 @@ app.get('/dynamic', function (req, res) {
     <ul>
       ${lis}
     </ul>
-    <h4>${time}</h5>
+    <h3>${time}</h5>
   </body>
   </html>`
   res.send(output);

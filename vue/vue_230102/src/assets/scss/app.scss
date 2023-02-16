@@ -1,0 +1,56 @@
+@import './reset.scss';
+@import './fonts.scss';
+
+#app {
+  font-family: 'Pretendard-Regular';
+  text-align: center;
+  color: #007efc;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 20px;
+
+    &.router-link-exact-active {
+      color: #007efc;
+    }
+  }
+}
+.home_image_box {
+  width: 100%;
+  @media (max-width: 400px){
+    /* 브라우저 사이즈 400px 이하일때*/
+    height: 100px;
+  }
+
+  @media (max-width: 767px) and (min-width: 400px){
+    /* 브라우저 사이즈 767px 이하일때*/
+    height: 220px;
+  }
+
+  @media (min-width: 768px){
+      /* 브라우저 사이즈 768px이상, 1023px이하 일때,*/
+      height: 300px;
+  }
+  // overflow: hidden;
+  // position: relative;
+  
+  .work_out_1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+  }
+}

@@ -14,7 +14,7 @@ app.get('/dynamic', function (req, res) {
   for (let i = 0; i < 20; i++){
     lis = lis + '<li>coding</li>';
   }
-  const time = Date();
+  const time = Date()
   const output = `
   <!DOCTYPE html>
   <html lang="en">

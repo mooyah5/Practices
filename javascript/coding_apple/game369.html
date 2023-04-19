@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="game369.css">
+  <title>Document</title>
+</head>
+<body>
+  <h1>이상한369</h1>
+  <input class="input" type="text" onchange="inputText()">
+  <div id="newnum"></div>
+  <button class="start">Go!</button>
+
+  <script>
+    // 3의 배수 입력 시 박수 한 번, 9의 배수 입력 시 박수 두 번
+    document.querySelector('.start').addEventListener('click', function() {
+      let num = document.querySelector('.input').value;
+      // document.getElementById('newnum').innerText = num;
+
+      if (num == '') {
+        alert('입력해봐')
+      } else if (num % 9 == 0) {
+        alert('짝짝!')
+      } else if (num % 3 == 0) {
+        alert('짝!')
+      } else {
+        alert(num)
+      }
+    })
+
+    // 인풋 커서를 벗어났을 때, 숫자가 아니면 경고창
+    function inputText() {
+      let check = /^[0-9]+$/;
+      let value = document.querySelector('.input').value;
+
+      if (!check.test(value)) {
+        alert('숫자만 입력해주세요')
+        document.querySelector('.input').value = ''
+      }
+    }
+  </script>
+</body>
+</html>

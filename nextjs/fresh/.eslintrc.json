@@ -1,0 +1,21 @@
+{
+  // https://findmypiece.tistory.com/203
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier" // ESlint의 eslint-config-prettier 규칙 적용
+    // EsLint에서 Prettier와 충돌할 수 있는 rule을 끄는 역할
+    // 문법 오류 체크 - EsLint, 코드 포맷팅 - Prettier 사용되도록 역할 분리
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error", // 사용되지 않는 변수를 에러로 인식
+    "@typescript-eslint/no-explicit-any": "error" // any 타입 정의를 에러로 인식
+  }
+}

@@ -26,14 +26,14 @@ var asdf = function (a, b, c) {
 }
 asdf(1, 2, 3)
 asdf.call(null, 1, 2, 3)
-asdf.applu(null, [1, 3, 3])
+asdf.apply(null, [1, 3, 3])
 // call은 보통 함수랑 똑같이 인자를 넣고,
 // apply는 인자를 하나로묶어 배열로 만들어 넣는다.
 // 위에서 null 인자가 하는 일은??? 바로 this를 대체하는 것이다.
 var obj = {
     strr: 'zero',
     yell: function () {
-        alert(this.string)
+        alert(this.strr)
     }
 }
 var obj2 = {
@@ -46,47 +46,6 @@ obj.yell.call(obj2) // what?
 
 // this는 기본적으로 window이지만, 몇가지 방법으로 다르게 바꿀 수 있는데,
 // call, apply, bind에서 첫 인자로 다른 것을 넣어주는 것도 this를 바꾸는 방법 중 하나이다.
-
-
-
-//// 1. call, apply로  함수의 arguments(인자) 조작하기!!
-// arguments는 함수가 처음부터 갖는 숨겨진 속성으로,
-// 함수에 들어온 인자를 배열형식(배열은 아니고,, 유사배열)으로 반환한다.
-function qwer() {
-    console.log(arguments)
-}
-qwer(1, 'string', true) // [1, 'string', true]
-// 생긴건 배열인데, 유사배열이라, 배열의 메소드는 쓸 수가 없다.
-function qwer2() {
-    console.log(arguments.join())
-}
-qwer2(1, 'string', true)    // Uncaut TypeError: arguments.join is not a functino
-// 이러 때, call, apply를 사용하면 된다.
-function qwer3() {
-    console.log(Array.prototype.join.call(arguments))
-}
-qwer3(1, 'string', true)    // '1,string,true'
-// 이렇게 배열의 프로토타입에 있는 join 함수를 빌려쓸 수 있게 되었다.
-// this는 arguments를 가리킨다.
-// join 외에 slice, concat 등 모든 메소드를 이렇게 쓰면 된다잉
-
-/// 2. call, apply로 주체가 되는 인스턴스와 메소드의 순서 바꾸기!!!
-
-/// 기존 filter 사용법
-// array.filter(function())의 경우,
-// filter 메소드는 함수를 argument(인자)로 받고,
-// 이를 앞에 있는 인스턴스인 arrya에 적용한다.
-// 이 부분을 call과 apply의 arguments에 대입해보면,
-// 첫 인자인 thisArg 자리에는 array, 두번째 인자 arg 자리에는 함수가 드간다.
-
-function moreThanFive(element) {
-    return element.length > 5;
-}
-let arr2 = ['abc', 'defghi']
-arr2.filter(moreThanFive)       // ['defghi'] => 인스턴스(arr)가 먼저 나오고, 그 뒤에 메소드(filter)가 등장
-
-Array.prototype.filter.call(arr, moreThanFive)  // ['defghi'] => 메소드(filter)가 먼저 나오고, 인스턴스(arr)가 뒤에 나옴]
-Array.prototype.filter.apply(arr, [moreThanFive])  // ['defghi'] => 위의 call과 동일
 
 
 ///////////////////////////////////////////////////

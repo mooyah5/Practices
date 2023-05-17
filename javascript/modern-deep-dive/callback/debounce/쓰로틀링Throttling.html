@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>클릭 횟수 : <span id="clickCnt">0</span></p>
+    <p>인식 횟수 : <span id="throttlingCnt">0</span></p>
+    <button id="clickBtn">Click!</button>
+</body>
+
+<script>
+    const clickBtn = document.querySelector('#clickBtn');
+    const clickCnt = document.querySelector('#clickCnt');
+    const throttlingCnt = document.querySelector('#throttlingCnt');
+
+    let timerId;
+
+    function throttling(func, timeout = 600) {
+    if (timerId) {
+        return;
+    }
+
+    timerId = setTimeout(() => {
+        func();
+        timerId = undefined;
+    }, timeout);
+    }
+
+    function delayFunction() {
+        throttlingCnt.innerHTML = parseInt(throttlingCnt.innerHTML) + 1;
+    }
+
+    clickBtn.addEventListener('click', () => {
+        console.log('click')
+        clickCnt.innerHTML = parseInt(clickCnt.innerHTML) + 1;
+        throttling(delayFunction);
+    });
+</script>
+</html>

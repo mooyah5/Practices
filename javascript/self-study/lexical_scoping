@@ -1,0 +1,18 @@
+; function init() {
+;     const name = "init 속 name"; // name은 init에 의해 생성된 지역 변수이다.
+;     function displayName() { // displayName() 은 내부 함수이며, 클로저다.
+;     const name = "displayName 속 name"
+;     console.log('name: ', name); // 부모 함수에서 선언된 변수를 사용한다.
+;     console.log('this.name: ', this.name); // 부모 함수에서 선언된 변수를 사용한다.
+;     }
+;     displayName();
+; }
+; init();
+
+
+if (Math.random() > 0.5) {
+    var x = 1;
+} else {
+    var x = 2;
+}
+console.log(x);

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout practice</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="main">
+            <h1>Buy our excellent shoes! Now on sale!</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus officia, quidem quo itaque cupiditate facilis, recusandae quis illo placeat nesciunt, dolore qui molestiae et voluptatibus! Nihil minus facilis sint delectus!</p>
+            <a href="./contact.html">
+                <button>Buy Now</button>
+            </a>
+        </div>
+        <div class="box">
+            <p>How we design our shoes</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis aliquid ipsum nisi voluptates vitae! Quia, vitae nam quo atque saepe inventore molestiae possimus sapiente quod vero consectetur neque deserunt ex?</p>
+        </div>
+    </div>
+
+    <div class="shopping">
+        <div class="container">
+
+            <div class="shopping-item">
+                <p class="shopping-item-name">Product 1</p>
+                <p class="shopping-item-desc">Descriptions</p>
+            </div>
+            <div class="shopping-item">
+                <p class="shopping-item-name">Product 2</p>
+                <p class="shopping-item-desc">Descriptions</p>
+            </div>
+            <div class="shopping-item">
+                <p class="shopping-item-name">Product 3</p>
+                <p class="shopping-item-desc">Descriptions</p>
+            </div>
+            <div class="shopping-item">
+                <p class="shopping-item-name">Product 4</p>
+                <p class="shopping-item-desc">Descriptions</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="contact">
+        <form class="form" action="">
+            <div class="contact-title">
+                <h3>Contact Us</h3>
+            </div>
+            <div class="contact-email w-100 col">
+                <label class="contact-labels" for="email">Your Email</label>
+                <input class="contact-inputs" type="email" id="email">
+            </div>
+            <div class="contact-name w-50">
+                <div class="first-name w-50">
+                    <label class="contact-labels" for="first-name">First Name</label>
+                    <input class="contact-inputs first-name" type="text" id="first-name" name="last-name">
+                </div>
+                <div class="last-name w-50">
+                    <label class="contact-labels" for="last-name">Last Name</label>
+                    <input class="contact-inputs" type="text" id="last-name" name="last-name">
+                </div>
+            </div>
+            <!-- <div style="clear: both;"></div> -->
+            <div class="contact-message w-100">
+                <label class="contact-labels" for="message">Message</label>
+                <input class="contact-inputs" type="textarea" id="message" name="message">
+            </div>
+            <div class="contact-submit" >
+                <div>
+                    <input class="subscribe-input" type="checkbox" id="check">
+                    <label for="check">Subscribe</label>
+                </div>
+                <div>
+                    <button type="submit">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

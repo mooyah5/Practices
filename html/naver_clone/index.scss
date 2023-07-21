@@ -1,0 +1,93 @@
+$main_color: #03c75a;
+$font_main_color: #101010;
+$font_title_color:#080808;
+$font_title_blur_color: #08080880;
+$font_mid_color: #101010;
+$font_lg: 16.8px;
+$font_md_title: 15.75px;
+$font_md: 14.7px;
+$font_sm: 13.65px;
+#wrap {
+    display: flex;
+    color: $font_main_color;
+    // min-width: 1340px;
+
+    &_center {
+        // div 태그 기본은 display: block
+        // display: inline_block;
+        margin: 0 auto;
+        // width: 500px;
+        background-color: aliceblue;
+        width: 1280px;
+
+        #header {
+            width: 1280px;
+            height: 261px;
+            // margin: 0 auto;
+            background-color: #d6d6d6;
+
+            #nav {
+                background-color: #e5e5e5;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                &_left {
+                    // background-image: url('https: //pm.pstatic.net/resources/asset/sp_main.752c7542.png');
+                    // display:inline-block;
+                    width: 46px;
+                    height: 46px;
+                    padding: 10px;
+                    background-color: red;
+                }
+                &_right {
+                    display: flex;
+                    flex-direction: row;
+                    &_pay {
+                        width: 46px;
+                        height: 46px;
+                        padding: 10px;
+                        background-color: orange;
+                    }
+                    &_notify {
+                        width: 46px;
+                        height: 46px;
+                        padding: 10px;
+                        background-color: yellow;}
+                }
+            }
+        }
+
+        #search {
+            // background-color: chocolate;
+            width: 706px;
+            height: 50px;
+            top: 64px;
+            left: 700px;
+            margin: 0 auto;
+            border:#03c75a 1px solid;
+            border-radius: 33px;
+            padding: 10px 0;
+
+        }
+
+        #content {
+            background-color: #03c75a;
+            display: inline-flex;
+            flex-direction: row;
+            // justify-content: spa;
+
+            &_right {
+                float: left;
+                width: 830px;
+                height: 100px;
+                background-color: blueviolet;
+            }
+            &left {
+                float: right;
+                width: 420px;
+                height: 100px;
+                background-color: azure;
+            }
+        }
+    }
+}

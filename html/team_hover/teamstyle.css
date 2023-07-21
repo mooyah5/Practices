@@ -29,12 +29,14 @@ body {
     flex-basis: 100px; /* 3. 사이즈 조절 */
     flex-shrink: 0; /*자동으로 사이즈가 축소되지 않도록 */
     margin: 0 10px;
-    transition: all .4s;
+    transition: all .3s;
+    filter: grayscale(0.8)
 }
 
 .team-item:hover {
-    flex-basis: 170px;
+    flex-basis: 150px;
     margin: 0 20px;
+    filter: grayscale(0)
 }
 
 

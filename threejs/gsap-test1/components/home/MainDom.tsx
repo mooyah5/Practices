@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styled, { keyframes } from "styled-components";
 import "@/assets/home/home.css";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import background0 from "@/public/background0.png";
 import maskGroup from "@/public/maskGroup.png";
@@ -14,11 +15,7 @@ import section2img1 from "@/public/section2image1.png";
 import section2img2 from "@/public/section2image2.png";
 import section2img3 from "@/public/section2image3.png";
 import section2img4 from "@/public/section2image4.png";
-import artchLogo from "@/public/Subtract.png";
 import section4_bg1 from "@/public/section4-bg1.png";
-import SplitText from "gsap/SplitText";
-
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,6 +87,7 @@ export default function MainDOM() {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       const tl = gsap.timeline();
+      // INTRO - skip
       if (skip) {
         tl.from("#intro-logo", {
           opacity: 0,
@@ -123,6 +121,8 @@ export default function MainDOM() {
           );
         return;
       }
+
+      // INTRO
       tl.from("#intro-logo", {
         opacity: 0,
         y: "+=30",
@@ -174,46 +174,8 @@ export default function MainDOM() {
     return () => ctx.revert();
   }, [skip]);
 
-  // useLayoutEffect(() => {
-  //   let ctx2 = gsap.context(() => {
-  //     const t2 = gsap.timeline();
-  //     console.log("t2", t2);
-  //     t2.to("#section-2", {
-  //       scrollTrigger: {
-  //         trigger: "#section-2",
-  //         scrub: true,
-  //         pin: true,
-  //         start: "center center",
-  //         end: "bottom -100%",
-  //         toggleClass: "active",
-  //         // ease: "power2",
-  //       },
-  //     });
-  //   });
-  //   return ctx2.revert();
-  // }, []);
-
-  // useGSAP(() => {
-  //   const t2 = gsap.timeline({
-  //     ScrollTrigger: {
-  //       trigger: "#section2Img1",
-  //       start: "10% 100%",
-  //       end: "100% 0%",
-  //       scrub: 1,
-  //       markers: true,
-  //       toggleActions: "restart none none none",
-  //     },
-  //   });
-  //   t2.to("#section2Img1", {
-  //     x: 400,
-  //     rotation: 360,
-  //     duration: 3,
-  //   });
-  // });
-
   return (
     <Main ref={comp}>
-      {/* <CursorFollow1 ref={(el) => (cursorRef = el)} /> */}
       <div
         id="intro-slider"
         className="h-screen p-10 bg-neutral-950 text-white absolute top-0 justify-center items-center left-0 z-20 w-full flex gap-10 tracking-tight"

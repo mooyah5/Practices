@@ -78,22 +78,11 @@ export default function MainDOM() {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#text_collabo",
-          x: 100,
           pin: true,
           start: "top bottom",
           end: "bottom top",
-          // scrub: 1,
-          // markers: true,
         },
       });
-      // tl.to(text_collabo.current, {
-      //   opacity: 1,
-      //   y: "0%",
-      //   rotation: "0deg",
-      //   ease: "power4.inOut",
-      //   duration: 1.2,
-      //   stagger: 0.01,
-      // });
     });
     return ctx.revert();
   }, []);

@@ -2,11 +2,64 @@ import bg_footer from "@/public/bg-footer.png";
 import footer_img_1 from "@/public/footer_img_1.png";
 import footer_img_2 from "@/public/footer_img_2.png";
 import Image from "next/image";
-export default function Footer() {
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+export default function Footer({ comp }: any) {
+  const footerRef = useRef(null);
+  const footer_img_1_ref = useRef(null);
+  const footer_img_2_ref = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo(
+      footer_img_2_ref.current,
+      {
+        opacity: 0,
+        y: 200,
+      },
+      {
+        opacity: 100,
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "center bottom",
+          end: "90% bottom",
+
+          scrub: 0.6,
+          markers: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      footer_img_1_ref.current,
+      {
+        opacity: 0,
+        y: 200,
+      },
+      {
+        opacity: 100,
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "center 90%",
+          end: "90% bottom",
+
+          scrub: 0.6,
+          markers: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <section
-      style={{ backgroundImage: `url(${bg_footer.src})` }}
-      className="relative h-screen flex flex-col justify-center items-center p-[5%]"
+      ref={footerRef}
+      // style={{ backgroundImage: `url(${bg_footer.src})` }}
+      className="relative h-[70vh] flex flex-col justify-center items-center p-[5%]"
     >
       <div className="w-full h-24"></div>
       <div className="w-full h-full flex flex-row">
@@ -43,17 +96,17 @@ export default function Footer() {
               cy="36"
               r="35.75"
               stroke="black"
-              stroke-width="0.5"
+              strokeWidth="0.5"
             />
             <path
               d="M17 26.5L36 17L54.5 26.5V54.5H17V26.5Z"
               stroke="black"
-              stroke-width="0.5"
+              strokeWidth="0.5"
             />
             <path
               d="M17 26.5L36 41L54.5 26.5"
               stroke="black"
-              stroke-width="0.5"
+              strokeWidth="0.5"
             />
           </svg>
 
@@ -80,6 +133,7 @@ export default function Footer() {
         </div>
       </div>
       <Image
+        ref={footer_img_1_ref}
         width={600}
         height={600}
         className="absolute -bottom-36 left-1/3 scale-50 object-bottom -translate-x-1/2"
@@ -87,6 +141,7 @@ export default function Footer() {
         alt=""
       />
       <Image
+        ref={footer_img_2_ref}
         width={700}
         height={700}
         className="absolute -bottom-32 left-[calc(50%-20px)] scale-50 object-bottom -translate-x-1/2"

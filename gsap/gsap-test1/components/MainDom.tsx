@@ -10,6 +10,13 @@ import TextPlugin from "gsap/TextPlugin";
 
 import background0 from "@/public/background0.png";
 import maskGroup from "@/public/maskGroup.png";
+import text_a from "@/public/text_a.png";
+import text_c from "@/public/text_c.png";
+import text_r from "@/public/text_r.png";
+import text_h from "@/public/text_h.png";
+import text_a_2 from "@/public/text_a_2.png";
+import text_r_2 from "@/public/text_r_2.png";
+import text_h_2 from "@/public/text_h_2.png";
 import section2img1 from "@/public/section2image1.png";
 import section2img2 from "@/public/section2image2.png";
 import section2img3 from "@/public/section2image3.png";
@@ -670,7 +677,7 @@ export default function MainDOM() {
             xPercent: 90,
           },
           {
-            xPercent: 50,
+            xPercent: 30,
             opacity: 1,
             scrollTrigger: {
               trigger: section06_ref.current,
@@ -694,7 +701,7 @@ export default function MainDOM() {
           gallery,
           {
             // opacity: 0,
-            xPercent: 50,
+            xPercent: 30,
           },
           {
             xPercent: 0,
@@ -780,7 +787,7 @@ export default function MainDOM() {
           <div className="relative">
             {!skip ? (
               <button
-                className="absolute bottom-10 right-10 z-20 text-white"
+                className="absolute bottom-10 right-10 z-30 text-white"
                 onClick={() => setSkip(true)}
               >
                 skip
@@ -1093,7 +1100,7 @@ export default function MainDOM() {
           {/* Section 04 */}
           <PaperTexture image={bg_footer.src}>
             <div className="content-wrapper h-screen w-full border">
-              <div className="absolute top-[10%] left-[10%] w-[20%]">
+              <div className="absolute top-[10%] left-[5%] w-[20%]">
                 <div className="flex flex-col gap-2">
                   <div className="accordian-menu flex flex-row items-center border-b border-black justify-between">
                     <div>PROJECTS</div>
@@ -1122,28 +1129,30 @@ export default function MainDOM() {
                 {/* <h5 className="w-[80%] mx-auto self-start content-row-wrapper-to-left-class text-[6vw] font-light mix-blend-soft-light text-neutral-500 whitespace-nowrap transform ">
                 A new way of designing, discovering and sharing
               </h5> */}
-                <div className="w-[80%] relative mx-auto text-[10vw] leading-none font-bold whitespace-nowrap transform h-1/2">
-                  <p className=" text-left text-xl font-light">/ our latest</p>
-                  <p className="text-neutral-300 drop-shadow-lg text-left">
-                    2024
-                  </p>
-                  <p className="absolute text-neutral-300 drop-shadow-lg text-left left-[20%]">
-                    PROJECT
-                  </p>
-                  <div className="text-[1vw] font-light absolute bottom-10 left-10 flex flex-col gap-4">
-                    <div className="flex flex-row gap-4">
-                      <span className="section2_sm_texts_class">Maatila</span>
-                      <span className="section2_sm_texts_class">Interior</span>
-                    </div>
-                    <div className="flex flex-row gap-4">
-                      <span className="section2_sm_texts_class">Clothes</span>
-                      <span className="section2_sm_texts_class">Package</span>
-                      <span className="section2_sm_texts_class">Lor</span>
-                    </div>
+
+                <div className="text-[1vw] font-light absolute bottom-10 left-[5%] flex flex-col gap-4">
+                  <div className="flex flex-row gap-4">
+                    <span className="section2_sm_texts_class">Maatila</span>
+                    <span className="section2_sm_texts_class">Interior</span>
+                  </div>
+                  <div className="flex flex-row gap-4">
+                    <span className="section2_sm_texts_class">Clothes</span>
+                    <span className="section2_sm_texts_class">Package</span>
+                    <span className="section2_sm_texts_class">Lor</span>
                   </div>
                 </div>
+
+                <div className="w-[80%] absolute mx-auto flex flex-col text-[10vw] leading-none font-bold whitespace-nowrap transform h-1/2">
+                  <p className=" text-left text-xl font-light">/ our latest</p>
+                  <p className="text-neutral-900 font-normal drop-shadow-lg text-left">
+                    2024
+                  </p>
+                  <p className="text-neutral-900 font-medium drop-shadow-lg text-left left-[20%]">
+                    PROJECT
+                  </p>
+                </div>
                 <Image
-                  className=" mix-blend-soft-light content-col-wrapper-class absolute top-1/2 right-10 w-[30vw] h-auto"
+                  className="mix-blend-soft-light content-col-wrapper-class absolute top-1/2 right-10 w-[30vw] h-auto"
                   src={section06_img1.src}
                   alt=""
                   width={350}

@@ -1,4 +1,4 @@
-import { isEnteredAtom } from "@/stores";
+import { isEnteredAtom } from "@/app/stores";
 import { Scroll } from "@react-three/drei";
 import { useRef } from "react";
 import { useRecoilState } from "recoil";

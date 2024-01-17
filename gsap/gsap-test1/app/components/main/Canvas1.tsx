@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { Loader } from "./Loader";
 import * as THREE from "three";
 import { useRecoilValue } from "recoil";
-import { isEnteredAtom } from "@/stores";
+import { isEnteredAtom } from "@/app/stores";
 
 export default function Canvas1() {
   const aspectRatio = 1;

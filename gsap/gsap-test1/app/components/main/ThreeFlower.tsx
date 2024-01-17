@@ -1,4 +1,4 @@
-import { isEnteredAtom } from "@/stores";
+import { isEnteredAtom } from "@/app/stores";
 import {
   useAnimations,
   useGLTF,

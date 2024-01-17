@@ -7,8 +7,6 @@ import gsap from "gsap";
 import styled, { keyframes } from "styled-components";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
-
-import background0 from "@/public/background0.png";
 import maskGroup from "@/public/maskGroup.png";
 import text_a from "@/public/text_a.png";
 import text_c from "@/public/text_c.png";
@@ -17,17 +15,16 @@ import text_h from "@/public/text_h.png";
 import text_a_2 from "@/public/text_a_2.png";
 import text_r_2 from "@/public/text_r_2.png";
 import text_h_2 from "@/public/text_h_2.png";
-import section02_text1 from "@/public/section02_text1.png";
+import section01_bg from "@/public/section01_bg.png";
 import section2img1 from "@/public/section2image1.png";
 import section2img2 from "@/public/section2image2.png";
 import section2img3 from "@/public/section2image3.png";
 import section2img4 from "@/public/section2image4.png";
 import bg_footer from "@/public/bg-footer.png";
-// import ScrollSection from "@/app/components/main/ScrollSection";
 import ScrollSection2 from "@/app/components/main/ScrollSection2";
-// import Footer from "./main/Footer";
 import footer_img_1 from "@/public/footer_img_1.png";
 import footer_img_2 from "@/public/footer_img_2.png";
+import footerTop from "@/public/FooterTop.png";
 
 import section06_img1 from "@/public/section06-img1.png";
 import section06_img2 from "@/public/section06-img2.png";
@@ -41,50 +38,25 @@ import { RecoilRoot } from "recoil";
 import { useGSAP } from "@gsap/react";
 import LoginPopup from "./main/LoginPopup";
 
-const useScroll = () => {
-  const [state, setState] = useState({
-    x: 0,
-    y: 0,
-  });
-  const onScroll = () => {
-    setState({ y: window.scrollY, x: window.screenX });
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return state;
-};
-
 export default function MainDOM() {
-  const comp = useRef(null);
-  let section2img1Ref = useRef(null);
   const [skip, setSkip] = useState(false);
+  const [onSearch, setOnSearch] = useState(false);
   const [isPopped, setIsPopped] = useState(false);
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
-  let cursorRef = useRef<any>(null);
+  const [hasRendered, setHasRendered] = useState(false);
   const hoverImages = [section2img1, section2img2, section2img3, section2img4];
-  let section2Img1Ref = useRef(null);
-  let section2Img2Ref = useRef(null);
-  let section2Img3Ref = useRef(null);
-  let section2Img4Ref = useRef(null);
-  // const section04 = useRef(null);
+
+  const comp = useRef(null);
   let text_collabo = useRef(null);
   let text_ration = useRef(null);
   let text_bridge = useRef(null);
   let text_bridge2 = useRef(null);
-  let text_hub = useRef(null);
-  let text_lorem = useRef(null);
-  let section03 = useRef(null);
-  let container = useRef(null);
-
+  const section02_text01 = useRef(null);
   const section05_text_1 = useRef(null);
   const section05_text_2 = useRef(null);
   const section05_text_3 = useRef(null);
   const section05_ref = useRef(null);
-  const section04_trigger = useRef(null);
 
   const section06_ref = useRef(null);
   const footerRef = useRef(null);
@@ -94,196 +66,34 @@ export default function MainDOM() {
   let hoverImg = useRef(null);
   let imgBox = useRef(null);
 
-  const { y } = useScroll();
-
-  const firstText = useRef(null);
-  const secondText = useRef(null);
-  const slider = useRef(null);
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // const animate = () => {
-  //   if (xPercent < -100) {
-  //     xPercent = 0;
-  //   } else if (xPercent > 0) {
-  //     xPercent = -100;
-  //   }
-  //   gsap.set(firstText.current, { xPercent: xPercent });
-  //   gsap.set(secondText.current, { xPercent: xPercent });
-  //   requestAnimationFrame(animate);
-  //   xPercent += 0.1 * direction;
-  // };
-
-  const [hasRendered, setHasRendered] = useState(false);
-
-  const introAnimation = async () => {
-    let introTimeline = gsap.timeline();
-    if (skip) {
-      introTimeline
-        .from("#intro-logo", {
-          opacity: 0,
-          y: "+=30",
-          duration: 0,
-        })
-        .to(
-          "#intro-logo",
-          {
-            opacity: 0,
-            y: "-=30",
-            duration: 0,
-          },
-          "<"
-        )
-        .to(
-          "#intro-slider",
-          {
-            // duration: 0,
-            display: "none",
-          },
-          "<"
-        )
-        .to(
-          "#intro-slider-2",
-          {
-            opacity: 0,
-            duration: 0,
-          },
-          "<"
-        );
-
-      setSkip(true);
-      return;
-    } else {
-      // INTRO
-      introTimeline
-        .from("#intro-logo", {
-          opacity: 0,
-          y: "+=30",
-          duration: 1,
-        })
-        .to("#intro-logo", {
-          opacity: 0,
-          y: "-=30",
-        })
-        .to("#intro-slider", {
-          duration: 1.3,
-          display: "none",
-        })
-        .from(["#title-1", "#title-2"], {
-          opacity: 0,
-          duration: 1,
-          // stagger: 0.6,
-        })
-        // .to(["#title-1", "#title-2"], {
-        //   delay: 1,
-        //   opacity: 0,
-        //   duration: 0.5,
-        // })
-        // .to(".title-span-1", {
-        //   xPercent: "-100",
-        //   duration: 0.5,
-        // })
-        // .to(".title-span-2", {
-        //   xPercent: "100",
-        //   duration: 0.5,
-        // })
-        .from(["#section-1-bg", "#section-1-nav"], {
-          delay: 0.5,
-          opacity: 0,
-          // display: "flex",
-          duration: 1.2,
-        })
-        .fromTo(
-          "#intro-slider-2",
-          { opacity: 1 },
-          {
-            opacity: 0,
-            duration: 1,
-          }
-        )
-        .fromTo(
-          "#mask-group",
-          { scale: 1.6, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 1,
-            onComplete: () => setSkip(true),
-          },
-          "<"
-        );
-    }
-  };
+  let introTimeline = gsap.timeline();
+  let tl = gsap.timeline();
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger, TextPlugin);
     setHasRendered(true);
   }, []);
   useGSAP(
     () => {
-      // GSAP ScrollTrigger, TextPlugin INIT
-      gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
       // SCROLL SMOOTH EFFECT - locomotive-scroll lib.
       (async () => {
         const LocomotiveScroll = (await import("locomotive-scroll")).default;
         const locomotiveScroll = new LocomotiveScroll();
       })();
 
-      // ALL OF ANIMATIONS (ctx = context)
       if (hasRendered) {
-        // // slider (text)
-        // gsap.to(slider.current, {
-        //   scrollTrigger: {
-        //     trigger: document.documentElement,
-        //     scrub: 0.25,
-        //     start: 0,
-        //     end: window.innerHeight,
-        //     onUpdate: (e) => (direction = e.direction * -1),
-        //   },
-        //   x: "-500px",
-        // });
-        // requestAnimationFrame(animate);
-
-        // INTRO
-        // introAnimation();
-        let introTimeline = gsap.timeline();
         if (skip) {
+          introTimeline.pause();
+          introTimeline.progress(1);
           introTimeline
-            .from("#intro-logo", {
-              opacity: 0,
-              y: "+=30",
-              duration: 0,
-            })
-            .to(
-              "#intro-logo",
-              {
-                opacity: 0,
-                y: "-=30",
-                duration: 0,
-              },
-              "<"
-            )
-            .to(
-              "#intro-slider",
-              {
-                // duration: 0,
-                display: "none",
-              },
-              "<"
-            )
-            .to(
-              "#intro-slider-2",
-              {
-                opacity: 0,
-                duration: 0,
-              },
-              "<"
-            );
+            .to(["#section-1-bg", "#section-1-nav"], { opacity: 0 })
+            .to("#intro-logo", { opacity: 0 })
+            .to("#intro-slider", { display: "none" })
+            .to("#intro-slider-2", { opacity: 0 });
 
           setSkip(true);
           return;
         } else {
-          // INTRO
           introTimeline
             .from("#intro-logo", {
               opacity: 0,
@@ -301,25 +111,10 @@ export default function MainDOM() {
             .from(["#title-1", "#title-2"], {
               opacity: 0,
               duration: 1,
-              // stagger: 0.6,
             })
-            // .to(["#title-1", "#title-2"], {
-            //   delay: 1,
-            //   opacity: 0,
-            //   duration: 0.5,
-            // })
-            // .to(".title-span-1", {
-            //   xPercent: "-100",
-            //   duration: 0.5,
-            // })
-            // .to(".title-span-2", {
-            //   xPercent: "100",
-            //   duration: 0.5,
-            // })
             .from(["#section-1-bg", "#section-1-nav"], {
               delay: 0.5,
               opacity: 0,
-              // display: "flex",
               duration: 1.2,
             })
             .fromTo(
@@ -343,34 +138,35 @@ export default function MainDOM() {
             );
         }
 
-        let tl = gsap.timeline();
-
         // Section02
-        gsap.set([text_collabo.current, text_ration.current], {
-          x: -500,
-        });
-        gsap.to([text_collabo.current, text_ration.current], {
-          scrollTrigger: {
-            trigger: "#text_collabo",
-            start: "top bottom",
-            end: "bottom center",
-            toggleActions: "restart none reverse none",
-            scrub: 0.5,
-            anticipatePin: 1,
-            // pinSpacing: false,
-          },
-          x: 0,
-          duration: 15,
-          ease: "none",
-        });
-
         gsap.set(
-          [text_bridge.current, text_bridge2.current, text_hub.current],
+          [section02_text01.current, text_collabo.current, text_ration.current],
           {
-            x: 500,
+            x: -500,
           }
         );
-        gsap.to([text_bridge.current, text_bridge2.current, text_hub.current], {
+        gsap.to(
+          [section02_text01.current, text_collabo.current, text_ration.current],
+          {
+            scrollTrigger: {
+              trigger: "#text_collabo",
+              start: "top bottom",
+              end: "bottom center",
+              toggleActions: "restart none reverse none",
+              scrub: 0.5,
+              anticipatePin: 1,
+              // pinSpacing: false,
+            },
+            x: 0,
+            duration: 15,
+            ease: "none",
+          }
+        );
+
+        gsap.set([text_bridge.current, text_bridge2.current], {
+          x: 500,
+        });
+        gsap.to([text_bridge.current, text_bridge2.current], {
           scrollTrigger: {
             trigger: "#text_bridge",
             start: "top bottom",
@@ -383,22 +179,6 @@ export default function MainDOM() {
           opacity: 1,
           ease: "none",
         });
-
-        // gsap.set(text_lorem.current, {
-        //   opacity: 0,
-        // });
-        // gsap.to(text_lorem.current, {
-        //   scrollTrigger: {
-        //     trigger: "#text_lorem",
-        //     start: "center 70%",
-        //     end: "center top",
-        //     toggleActions: "restart none reverse none",
-        //     scrub: 0.5,
-        //   },
-        //   duration: 3,
-        //   opacity: 1,
-        //   ease: "none",
-        // });
 
         gsap.to("#section02_text_bottom", {
           scrollTrigger: {
@@ -429,24 +209,18 @@ export default function MainDOM() {
         const pinTrigger = ScrollTrigger.create({
           trigger: ".content-wrapper",
           anticipatePin: 1,
-          // pinSpacing: false,
           pin: true,
           start: "top top",
           end: "+=300%",
           scrub: 1,
-          // markers: {
-          //   startColor: "white",
-          //   endColor: "orange",
-          //   fontSize: "50px",
-          //   indent: 10,
-          // },
         });
 
         tl.from(RowContentWrappersToRight, {
           x: "-100%",
           scrollTrigger: {
             start: () => pinTrigger?.start,
-            end: () => pinTrigger?.end,
+            end: () =>
+              pinTrigger?.end - (pinTrigger?.end - pinTrigger?.start) / 3,
             scrub: 2,
           },
           stagger: 0.1,
@@ -455,29 +229,12 @@ export default function MainDOM() {
           x: "-100%",
           scrollTrigger: {
             start: () => pinTrigger?.start,
-            end: () => pinTrigger?.end,
+            end: () =>
+              pinTrigger?.end - (pinTrigger?.end - pinTrigger?.start) / 3,
             scrub: 2,
           },
           stagger: 0.1,
         });
-        // tl.to(RowContentWrappers, {
-        //   x: "100%",
-        //   scrollTrigger: {
-        //     start: () => pinTrigger2?.start,
-        //     end: () => pinTrigger2?.end - 1000,
-        //     scrub: 2,
-        //   },
-        //   stagger: 0.1,
-        // });
-
-        // const lenSec04 = Math.max(
-        //   TextWrappers.length,
-        //   ColContentWrappers.length
-        // );
-        // console.log(lenSec04);
-
-        // gsap.utils.toArray(TextWrappers).forEach((item, idx) => {});
-
         tl.fromTo(
           TextWrappers,
           {
@@ -490,7 +247,8 @@ export default function MainDOM() {
             duration: 1,
             scrollTrigger: {
               start: () => pinTrigger?.start,
-              end: () => pinTrigger?.end,
+              end: () =>
+                pinTrigger?.end - (pinTrigger?.end - pinTrigger?.start) / 3,
               scrub: 2,
             },
             stagger: 0.1,
@@ -508,7 +266,8 @@ export default function MainDOM() {
             opacity: 50,
             scrollTrigger: {
               start: () => pinTrigger?.start,
-              end: () => pinTrigger?.end,
+              end: () =>
+                pinTrigger?.end - (pinTrigger?.end - pinTrigger?.start) / 3,
               scrub: 2,
             },
             stagger: 0.1,
@@ -516,33 +275,6 @@ export default function MainDOM() {
         );
 
         // SECTION 05
-
-        // const pin = gsap.fromTo(
-        //   section05_ref.current,
-        //   {
-        //     translateX: 0,
-        //   },
-        //   {
-        //     // translateX: "-200vw",
-        //     ease: "none",
-        //     duration: 1,
-        //     scrollTrigger: {
-        //       trigger: section05_ref.current,
-        //       start: "top top",
-        //       end: "2000 top",
-        //       scrub: 0.6,
-        //       pin: true,
-        //       anticipatePin: 1,
-        //       // markers: {
-        //       //   startColor: "black",
-        //       //   endColor: "black",
-        //       //   fontSize: "32px",
-        //       //   indent: 10,
-        //       // },
-        //     },
-        //   }
-        // );
-
         gsap.fromTo(
           section05_text_1.current,
           { opacity: 0, y: 20 },
@@ -598,7 +330,6 @@ export default function MainDOM() {
         );
 
         // SECTION 06 갤러리
-
         const gallery = document.querySelectorAll(".gallery");
 
         const pinTrigger2 = ScrollTrigger.create({
@@ -686,7 +417,7 @@ export default function MainDOM() {
                 scrollTrigger: {
                   trigger: section06_ref.current,
                   start: () =>
-                    (pinTrigger2?.end - pinTrigger2?.start) / 2 +
+                    ((pinTrigger2?.end - pinTrigger2?.start) / 3) * 2 +
                     pinTrigger2.start,
                   end: () => pinTrigger2?.end,
                   scrub: 0.5,
@@ -755,8 +486,6 @@ export default function MainDOM() {
           }
         );
 
-        // tl.fromTo(gallery,
-        //   )
         tl.from(".gallery-title", {
           xPercent: -50,
           opaciyt: 0,
@@ -861,7 +590,7 @@ export default function MainDOM() {
             </IntroSlider>
             <div
               id="intro-slider-2"
-              className="relative flex flex-col h-screen z-10 bg-neutral-950 gap-2 justify-center place-items-center"
+              className="relative font-nexon flex flex-col h-screen z-10 bg-neutral-950 gap-2 justify-center place-items-center"
             >
               <p
                 id="title-1"
@@ -925,21 +654,75 @@ export default function MainDOM() {
                   CONTACT
                 </NavCircle>
               </div>
-              <div className="flex flex-row gap-12 lg:gap-24">
+              <div className="flex flex-row gap-4 items-center lg:gap-8">
                 <div className="flex justify-between gap-3">
                   <NavBtn className="nav-btn" onClick={() => {}}>
                     PROJECT
                   </NavBtn>
                   <NavBtn className="nav-btn" onClick={() => {}}>
-                    ARCHIVE
+                    HISTORY
                   </NavBtn>
                   <NavBtn className="nav-btn" onClick={() => {}}>
-                    LIST
+                    ARTIST
                   </NavBtn>
+                </div>
+                <div className="search-bar flex items-center flex-row justify-center gap-2 w-[113px] h-full">
+                  <button
+                    className="search-btn"
+                    onClick={() => setOnSearch(!onSearch)}
+                  >
+                    <svg
+                      // width="30"
+                      height="25"
+                      viewBox="0 0 46 50"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="21.5555"
+                        cy="21.5553"
+                        r="19.9074"
+                        stroke="#9f735b"
+                        strokeWidth="1.59259"
+                      />
+                      <path
+                        d="M34.2964 36.6855L44.6482 48.63"
+                        stroke="#9f735b"
+                        strokeWidth="1.59259"
+                      />
+                    </svg>
+                  </button>
+                  <input
+                    type="text"
+                    className={`border-b  duration-300 border-[#9f735b] bg-transparent ease-linear h-7 text-sm ${
+                      onSearch ? "w-[80px] px-2" : "w-0"
+                    }`}
+                  />
                 </div>
                 <div className="flex justify-between gap-3">
                   <NavBtn className="nav-btn" onClick={() => setIsPopped(true)}>
-                    LOGIN
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 90 90"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_1630_59)">
+                        <path
+                          opacity="0.9"
+                          d="M23.1428 29.5714C23.1428 13.7919 35.9347 1 51.7143 1C67.4938 1 80.2857 13.7919 80.2857 29.5714L80.2856 89.5713M6 50.8574L56 50.8574M56 50.8574L46 40.8574M56 50.8574L46 60.8574"
+                          stroke="#9f735b"
+                          strokeLinecap="round"
+                          strokeWidth="3"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_1630_59">
+                          <rect width="90" height="90" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
                   </NavBtn>
                 </div>
               </div>
@@ -959,8 +742,8 @@ export default function MainDOM() {
               className="absolute top-0 left-1/2 -translate-x-1/2"
             >
               <Image
-                className="h-screen object-cover"
-                src={background0}
+                className="h-screen object-cover object-top"
+                src={section01_bg}
                 alt="background"
               />
               <MainText className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 ">
@@ -1013,7 +796,13 @@ export default function MainDOM() {
           <Section02 className="text-neutral-900">
             <div className="mx-auto relative mix-blend-soft-light w-full md:w-[70%] h-full flex justify-center items-center flex-col tracking-widest">
               <div className="flex flex-row text-[11vw] items-center justify-between w-full">
-                <div className="text-base">¹HOME - ²CHAIRS - ³TABLES -</div>
+                <div
+                  id="section02_text01"
+                  ref={section02_text01}
+                  className="text-base break-keep"
+                >
+                  ¹HOME - ²CHAIRS - ³TABLES -
+                </div>
                 <div
                   id="text_collabo"
                   className="font-light"
@@ -1122,12 +911,7 @@ export default function MainDOM() {
                 </div>
               </div>
               <div className="flex-col flex mix-blend-soft-light justify-end items-center h-screen pb-[3%]">
-                {/* <p className="content-row-wrapper-class text-[5vw]">asdfsfdsf</p> */}
-                {/* <h5 className="w-[80%] mx-auto self-start content-row-wrapper-to-left-class text-[6vw] font-light mix-blend-soft-light text-neutral-500 whitespace-nowrap transform ">
-                A new way of designing, discovering and sharing
-              </h5> */}
-
-                <div className="w-full px-[5%] absolute font-spoqa mx-auto flex flex-col leading-none font-bold whitespace-nowrap transform h-1/2">
+                <div className="w-full px-[5%] font-spoqa mx-auto flex flex-col leading-none font-bold whitespace-nowrap transform h-1/2">
                   <div className="pl-[5%]">
                     <p className=" text-left text-xl font-normal">
                       / our latest
@@ -1137,7 +921,7 @@ export default function MainDOM() {
                     </p>
                   </div>
                   <div className="flex flex-row justify-between items-end">
-                    <div className="text-[1vw] font-light flex flex-col gap-4">
+                    <div className="text-[1vw] font-light flex flex-col gap-4 mb-[3%]">
                       <div className="flex flex-row gap-4">
                         <span className="section2_sm_texts_class">Maatila</span>
                         <span className="section2_sm_texts_class">
@@ -1262,35 +1046,37 @@ export default function MainDOM() {
                     <p className="gallery-item-text text-4xl">lorem</p>
                     <p className="gallery-item-text text-2xl">lorem</p>
                   </div>
-
-                  {/* <div className="gallery-item h-[40vh] w-[30vw] bg-[#e78383]" />
-                  <div className="gallery-item h-[40vh] w-[30vw] bg-[#FFAB5E]" />
-                  <div className="gallery-item h-[40vh] w-[30vw] bg-[#7B8D73]" />
-                  <div className="gallery-item h-[40vh] w-[30vw] bg-[#4B5944]" /> */}
                 </div>
               </div>
             </Section06>
 
             <Footer ref={footerRef}>
-              <div className="w-full h-24"></div>
-              <div className="w-full h-full flex flex-row">
+              <div
+                className="w-full h-[40vh] bg-red-50 object-contain object-center"
+                style={{ backgroundImage: `url(${footerTop.src})` }}
+              >
+                <div className="flex h-full w-[80%] mx-auto flex-row justify-between items-center">
+                  <p>
+                    <span className="font-thin text-[4vw]">WE'RE HERE TO </span>
+                    <span className="font-waterfall text-[8vw]">TALK</span>
+                  </p>
+                  <div>asdf</div>
+                </div>
+              </div>
+              <div className="p-[5%] w-full h-[60vh] flex flex-row">
                 <div className="flex justify-start items-end w-full h-full">
-                  <div className=" font-pret">
+                  <div className="font-pret flex flex-col gap-3">
                     <div className="flex flex-col gap-1">
                       <p className="font-semibold">E-MAIL</p>
-                      <p className="font-light">abcd@abcd.com</p>
+                      <p className="font-light">artch@nitsoft.biz</p>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <p className="font-semibold">E-MAIL</p>
-                      <p className="font-light">abcd@abcd.com</p>
+                      <p className="font-semibold">TEL</p>
+                      <p className="font-light">010-0000-0000</p>
                     </div>
-                    <div className="flex flex-col gap-1">
-                      <p className="font-semibold">E-MAIL</p>
-                      <p className="font-light">abcd@abcd.com</p>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <p className="font-semibold">E-MAIL</p>
-                      <p className="font-light">abcd@abcd.com</p>
+                    <div className="flex flex-col gap-1 mt-10">
+                      <p className="font-semibold">LOCATION</p>
+                      <p className="font-light">서울 강남구 선릉로 624</p>
                     </div>
                   </div>
                 </div>
@@ -1407,10 +1193,10 @@ const Nav = styled.div`
   top: 40px;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 40px;
   font-weight: light;
-  align-items: center;
   padding: 0 5rem;
   z-index: 20;
   height: 50px;
@@ -1571,5 +1357,5 @@ const Footer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5%;
+  /* padding: 5%; */
 `;

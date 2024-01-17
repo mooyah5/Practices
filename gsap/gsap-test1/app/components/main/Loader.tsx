@@ -1,4 +1,4 @@
-import { isEnteredAtom } from "@/stores";
+import { isEnteredAtom } from "@/app/stores";
 import { useProgress, Html } from "@react-three/drei";
 import { useRecoilState } from "recoil";
 import { keyframes, styled } from "styled-components";

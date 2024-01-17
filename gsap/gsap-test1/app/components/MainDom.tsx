@@ -1,5 +1,5 @@
 "use client";
-import "@/assets/home/home.css";
+import "@/app/assets/home/home.css";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -22,8 +22,8 @@ import section2img2 from "@/public/section2image2.png";
 import section2img3 from "@/public/section2image3.png";
 import section2img4 from "@/public/section2image4.png";
 import bg_footer from "@/public/bg-footer.png";
-// import ScrollSection from "@/components/main/ScrollSection";
-import ScrollSection2 from "@/components/main/ScrollSection2";
+// import ScrollSection from "@/app/components/main/ScrollSection";
+import ScrollSection2 from "@/app/components/main/ScrollSection2";
 // import Footer from "./main/Footer";
 import footer_img_1 from "@/public/footer_img_1.png";
 import footer_img_2 from "@/public/footer_img_2.png";

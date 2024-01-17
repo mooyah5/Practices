@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Pretendard, nexon, NotoSansKR, spoqa, waterfall } from "./libs/fonts";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${Pretendard.className} ${nexon.variable} ${NotoSansKR.variable} ${spoqa.variable} ${waterfall.variable}`}
+    >
       <body suppressHydrationWarning={true} className={inter.className}>
         {children}
       </body>

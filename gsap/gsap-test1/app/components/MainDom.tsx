@@ -1,5 +1,5 @@
 "use client";
-import "@/app/assets/home/home.css";
+import "@/app/assets/css/home.css";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -17,6 +17,7 @@ import text_h from "@/public/text_h.png";
 import text_a_2 from "@/public/text_a_2.png";
 import text_r_2 from "@/public/text_r_2.png";
 import text_h_2 from "@/public/text_h_2.png";
+import section02_text1 from "@/public/section02_text1.png";
 import section2img1 from "@/public/section2image1.png";
 import section2img2 from "@/public/section2image2.png";
 import section2img3 from "@/public/section2image3.png";
@@ -610,6 +611,8 @@ export default function MainDOM() {
         });
 
         const galleryItems = document.querySelectorAll(".gallery-item");
+        const galleryItemTexts =
+          document.querySelectorAll(".gallery-item-text");
         gsap.utils.toArray(galleryItems).forEach((item: any, idx: number) => {
           tl.fromTo(
             item,
@@ -670,6 +673,33 @@ export default function MainDOM() {
             }
           );
         });
+        gsap.utils
+          .toArray(galleryItemTexts)
+          .forEach((item: any, idx: number) => {
+            tl.fromTo(
+              item,
+              {
+                opacity: 0,
+              },
+              {
+                opacity: 1,
+                scrollTrigger: {
+                  trigger: section06_ref.current,
+                  start: () =>
+                    (pinTrigger2?.end - pinTrigger2?.start) / 2 +
+                    pinTrigger2.start,
+                  end: () => pinTrigger2?.end,
+                  scrub: 0.5,
+                  // markers: {
+                  //   startColor: "purple",
+                  //   endColor: "purple",
+                  //   fontSize: "50px",
+                  //   indent: 10,
+                  // },
+                },
+              }
+            );
+          });
         tl.fromTo(
           gallery,
           {
@@ -946,7 +976,7 @@ export default function MainDOM() {
               />
 
               <div id="section-1-marquee" className="overflow-hidden w-screen">
-                <MovingSpan className="-z-10 text-[34px]">
+                <MovingSpan className="-z-10 text-[34px] font-nexon">
                   Inspiring Create Visions Sparking Artistic Growth, Inspiring
                   Create Visions Sparking Artistic Growth, Inspiring Create
                   Visions Sparking Artistic Growth, Inspiring Create Visions
@@ -980,11 +1010,13 @@ export default function MainDOM() {
           </div>
         </main> */}
 
-          <Section02 className="text-neutral-600">
+          <Section02 className="text-neutral-900">
             <div className="mx-auto relative mix-blend-soft-light w-full md:w-[70%] h-full flex justify-center items-center flex-col tracking-widest">
-              <div className="flex flex-row text-[8vw]">
+              <div className="flex flex-row text-[11vw] items-center justify-between w-full">
+                <div className="text-base">¹HOME - ²CHAIRS - ³TABLES -</div>
                 <div
                   id="text_collabo"
+                  className="font-light"
                   ref={text_collabo}
                   onMouseOver={() => {
                     hoverImg.src = `./section2image1.png`;
@@ -999,31 +1031,13 @@ export default function MainDOM() {
                     gsap.to(imgBox, { scale: 0.8, opacity: 0, duration: 0.5 });
                   }}
                 >
-                  COLLA<span className="font-thin">BO </span>
+                  COLLA<span className="font-waterfall">BO </span>
                 </div>
-                <a
-                  id="text_ration"
-                  ref={text_ration}
-                  onMouseOver={() => {
-                    hoverImg.src = `./section2image2.png`;
-                    gsap.set(imgBox, { scale: 0.8, opacity: 0, duration: 0.5 });
-                    gsap.to(imgBox, { scale: 1, opacity: 1, duration: 0.5 });
-                  }}
-                  onMouseMove={(e: any) => {
-                    imgBox.style.left = e.pageX + 20 + "px";
-                    imgBox.style.top = e.pageY - 20 + "px";
-                  }}
-                  onMouseOut={() => {
-                    gsap.to(imgBox, { scale: 0.8, opacity: 0, duration: 0.5 });
-                  }}
-                  data-cursor-image="https://cdn.pixabay.com/photo/2023/09/14/16/17/wave-8253292_1280.jpg"
-                >
-                  RATION
-                </a>
               </div>
-              <div className="flex flex-row items-center text-[8vw] gap-5 justify-between">
+              <div className="flex flex-row w-full items-center text-[11vw] gap-5 justify-start">
                 <div
                   id="text_bridge"
+                  className="text-[#DCDCDC]"
                   ref={text_bridge}
                   onMouseOver={() => {
                     hoverImg.src = `./section2image3.png`;
@@ -1038,21 +1052,15 @@ export default function MainDOM() {
                     gsap.to(imgBox, { scale: 0.8, opacity: 0, duration: 0.5 });
                   }}
                 >
-                  <span className="font-thin">B</span>RIDGE
+                  ARTHUB
                 </div>
                 <div
                   id="text_bridge2"
                   ref={text_bridge2}
                   className="text-[1vw] shrink-0 font-light"
-                >
-                  예술과 비즈니스, 연결의 다리
-                </div>
-                <div
-                  id="text_hub"
-                  ref={text_hub}
                   onMouseOver={() => {
                     hoverImg.src = `./section2image4.png`;
-                    gsap.set(imgBox, { scale: 0.8, opacity: 0, duration: 0.5 });
+                    gsap.set(imgBox, { scale: 0, opacity: 0, duration: 0.5 });
                     gsap.to(imgBox, { scale: 1, opacity: 1, duration: 0.5 });
                   }}
                   onMouseMove={(e: any) => {
@@ -1062,25 +1070,14 @@ export default function MainDOM() {
                   onMouseOut={() => {
                     gsap.to(imgBox, { scale: 0.8, opacity: 0, duration: 0.5 });
                   }}
-                  className="text-gray-200"
                 >
-                  HUB
+                  예술과 비즈니스, 연결의 다리
                 </div>
               </div>
               {/* <div
-              id="text_lorem"
-              ref={text_lorem}
-              className="flex flex-col gap-1 text-[1vw] text-lg font-extralight justify-between text-start w-[90%] mx-auto"
-            >
-              <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </div>
-              <div>Laudantium quaerat, ipsam quibusdam nam ad repudiandae</div>
-            </div> */}
-              <div
                 className="flex w-[90%] max-md:text-center"
                 id="section02_text_bottom"
-              ></div>
+              ></div> */}
             </div>
             <div className="con5">
               <div ref={(el) => (imgBox = el)} className="imgBox box">
@@ -1099,7 +1096,7 @@ export default function MainDOM() {
 
           {/* Section 04 */}
           <PaperTexture image={bg_footer.src}>
-            <div className="content-wrapper h-screen w-full border">
+            <div className="content-wrapper font-spoqa h-screen w-full border">
               <div className="absolute top-[10%] left-[5%] w-[20%]">
                 <div className="flex flex-col gap-2">
                   <div className="accordian-menu flex flex-row items-center border-b border-black justify-between">
@@ -1124,32 +1121,39 @@ export default function MainDOM() {
                   </div>
                 </div>
               </div>
-              <div className="flex-col flex mix-blend-soft-light justify-end items-center h-screen">
+              <div className="flex-col flex mix-blend-soft-light justify-end items-center h-screen pb-[3%]">
                 {/* <p className="content-row-wrapper-class text-[5vw]">asdfsfdsf</p> */}
                 {/* <h5 className="w-[80%] mx-auto self-start content-row-wrapper-to-left-class text-[6vw] font-light mix-blend-soft-light text-neutral-500 whitespace-nowrap transform ">
                 A new way of designing, discovering and sharing
               </h5> */}
 
-                <div className="text-[1vw] font-light absolute bottom-10 left-[5%] flex flex-col gap-4">
-                  <div className="flex flex-row gap-4">
-                    <span className="section2_sm_texts_class">Maatila</span>
-                    <span className="section2_sm_texts_class">Interior</span>
+                <div className="w-full px-[5%] absolute font-spoqa mx-auto flex flex-col leading-none font-bold whitespace-nowrap transform h-1/2">
+                  <div className="pl-[5%]">
+                    <p className=" text-left text-xl font-normal">
+                      / our latest
+                    </p>
+                    <p className="text-neutral-900 font-normal drop-shadow-lg text-left text-[13vw]">
+                      2024
+                    </p>
                   </div>
-                  <div className="flex flex-row gap-4">
-                    <span className="section2_sm_texts_class">Clothes</span>
-                    <span className="section2_sm_texts_class">Package</span>
-                    <span className="section2_sm_texts_class">Lor</span>
+                  <div className="flex flex-row justify-between items-end">
+                    <div className="text-[1vw] font-light flex flex-col gap-4">
+                      <div className="flex flex-row gap-4">
+                        <span className="section2_sm_texts_class">Maatila</span>
+                        <span className="section2_sm_texts_class">
+                          Interior
+                        </span>
+                      </div>
+                      <div className="flex flex-row gap-4">
+                        <span className="section2_sm_texts_class">Clothes</span>
+                        <span className="section2_sm_texts_class">Package</span>
+                        <span className="section2_sm_texts_class">Lor</span>
+                      </div>
+                    </div>
+                    <p className="text-neutral-900 font-medium drop-shadow-lg text-left text-[15vw] left-[20%]">
+                      PROJECT
+                    </p>
                   </div>
-                </div>
-
-                <div className="w-[80%] absolute mx-auto flex flex-col text-[10vw] leading-none font-bold whitespace-nowrap transform h-1/2">
-                  <p className=" text-left text-xl font-light">/ our latest</p>
-                  <p className="text-neutral-900 font-normal drop-shadow-lg text-left">
-                    2024
-                  </p>
-                  <p className="text-neutral-900 font-medium drop-shadow-lg text-left left-[20%]">
-                    PROJECT
-                  </p>
                 </div>
                 <Image
                   className="mix-blend-soft-light content-col-wrapper-class absolute top-1/2 right-10 w-[30vw] h-auto"
@@ -1196,7 +1200,7 @@ export default function MainDOM() {
                   height={0}
                 />
                 <Image
-                  className=" mix-blend-soft-light content-col-wrapper-class absolute top-0 left-1/2 -translate-x-1/2 h-auto"
+                  className=" mix-blend-soft-light content-col-wrapper-class absolute top-5 left-1/2 -translate-x-1/2 h-auto"
                   src={section06_img7.src}
                   alt=""
                   width={250}
@@ -1223,16 +1227,46 @@ export default function MainDOM() {
 
             {/* Section 06 */}
             <Section06 ref={section06_ref}>
-              <div className="flex relative justify-center items-end w-full h-full flex-col gap-10">
-                <p className="absolute gallery-title bottom-10 left-10 text-start w-[90%] mx-auto text-[14vw]">
+              <div className="flex relative justify-center font-nexon items-end w-full h-full flex-col gap-10">
+                <p className="absolute gallery-title font-semibold bottom-10 left-10 text-start w-[90%] mx-auto text-[15vw]">
                   GALLERY
                 </p>
-                <div className="gallery z-10  flex flex-row gap-5 w-[90%] bg-neutral-50 bg-opacity-70 rounded-sm p-10 pr-0">
-                  <div className="gallery-item h-[40vh] w-[30vw] bg-[#d9d9d9]" />
-                  <div className="gallery-item h-[40vh] w-[30vw] bg-[#e78383]" />
+                <div className="gallery z-10 flex flex-row gap-5 w-[90%] bg-neutral-50 bg-opacity-70 rounded-sm p-10 pr-0">
+                  <div className="gallery-item w-[20vw] flex flex-col gap-1">
+                    <p className="gallery-item-text text-2xl font-thin">01</p>
+                    <div className="h-[40vh] bg-[#d9d9d9]" />
+                    <p className="gallery-item-text text-4xl">lorem</p>
+                    <p className="gallery-item-text text-2xl">lorem</p>
+                  </div>
+                  <div className="gallery-item w-[20vw] flex flex-col gap-1">
+                    <p className="gallery-item-text text-2xl font-thin">01</p>
+                    <div className="h-[40vh] bg-[#e78383]" />
+                    <p className="gallery-item-text text-4xl">lorem</p>
+                    <p className="gallery-item-text text-2xl">lorem</p>
+                  </div>
+                  <div className="gallery-item w-[20vw] flex flex-col gap-1">
+                    <p className="gallery-item-text text-2xl font-thin">01</p>
+                    <div className="h-[40vh] bg-[#FFAB5E]" />
+                    <p className="gallery-item-text text-4xl">lorem</p>
+                    <p className="gallery-item-text text-2xl">lorem</p>
+                  </div>
+                  <div className="gallery-item w-[20vw] flex flex-col gap-1">
+                    <p className="gallery-item-text text-2xl font-thin">01</p>
+                    <div className="h-[40vh] bg-[#7B8D73]" />
+                    <p className="gallery-item-text text-4xl">lorem</p>
+                    <p className="gallery-item-text text-2xl">lorem</p>
+                  </div>
+                  <div className="gallery-item w-[20vw] flex flex-col gap-1">
+                    <p className="gallery-item-text text-2xl font-thin">01</p>
+                    <div className="h-[40vh] bg-[#4B5944]" />
+                    <p className="gallery-item-text text-4xl">lorem</p>
+                    <p className="gallery-item-text text-2xl">lorem</p>
+                  </div>
+
+                  {/* <div className="gallery-item h-[40vh] w-[30vw] bg-[#e78383]" />
                   <div className="gallery-item h-[40vh] w-[30vw] bg-[#FFAB5E]" />
                   <div className="gallery-item h-[40vh] w-[30vw] bg-[#7B8D73]" />
-                  <div className="gallery-item h-[40vh] w-[30vw] bg-[#4B5944]" />
+                  <div className="gallery-item h-[40vh] w-[30vw] bg-[#4B5944]" /> */}
                 </div>
               </div>
             </Section06>
@@ -1241,22 +1275,22 @@ export default function MainDOM() {
               <div className="w-full h-24"></div>
               <div className="w-full h-full flex flex-row">
                 <div className="flex justify-start items-end w-full h-full">
-                  <div className="">
+                  <div className=" font-pret">
                     <div className="flex flex-col gap-1">
                       <p className="font-semibold">E-MAIL</p>
-                      <p>abcd@abcd.com</p>
+                      <p className="font-light">abcd@abcd.com</p>
                     </div>
                     <div className="flex flex-col gap-1">
                       <p className="font-semibold">E-MAIL</p>
-                      <p>abcd@abcd.com</p>
+                      <p className="font-light">abcd@abcd.com</p>
                     </div>
                     <div className="flex flex-col gap-1">
                       <p className="font-semibold">E-MAIL</p>
-                      <p>abcd@abcd.com</p>
+                      <p className="font-light">abcd@abcd.com</p>
                     </div>
                     <div className="flex flex-col gap-1">
                       <p className="font-semibold">E-MAIL</p>
-                      <p>abcd@abcd.com</p>
+                      <p className="font-light">abcd@abcd.com</p>
                     </div>
                   </div>
                 </div>
@@ -1287,20 +1321,20 @@ export default function MainDOM() {
                     />
                   </svg>
 
-                  <div className="font-extralight text-xs">
+                  <div className="font-extralight font-nexon text-xs">
                     아치의 새로운 콜라보 프로젝트와 다양한 정보가 담긴
                     뉴스레터를 통해 최신 소식을 받아보세요!
                   </div>
-                  <div className="text-xs">
-                    숨는다면 서는 앞이, 넋은, 나오니까 일을, 주다,
+                  <div className="text-xs font-nexon">
+                    예술가들을 위한 공간 ARTCH
                   </div>
                   <div className="flex flex-col mt-10 text-7xl">
-                    <div>JOIN</div>
+                    <div className=" font-spoqa">JOIN</div>
                     <div className="flex flex-row items-end gap-4">
-                      <div>US</div>
+                      <div className="font-spoqa">US</div>
                       <div>
                         <input
-                          className="text-base border-b border-black bg-transparent font-extralight pr-12 pl-2"
+                          className="text-base font-nexon border-b border-black bg-transparent font-extralight pr-12 pl-2"
                           type="text"
                           placeholder="ENTER YOUR EMAIL"
                         />

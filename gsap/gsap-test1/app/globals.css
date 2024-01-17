@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 /* :root {
   padding: 0;
   margin: 0;
@@ -91,9 +100,9 @@ body {
   align-items: center;
 } */
 
-.scroll-section h3 {
+/* .scroll-section h3 {
   color: var(--primaryTextColor);
   letter-spacing: var(--headlineMedium);
   font-size: var(--headlineMedium);
   text-transform: uppercase;
-}
+} */

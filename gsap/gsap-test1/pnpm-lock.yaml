@@ -17,6 +17,9 @@ dependencies:
   '@react-three/fiber':
     specifier: ^8.15.13
     version: 8.15.13(react-dom@18.0.0)(react@18.0.0)(three@0.160.0)
+  '@types/three':
+    specifier: ^0.160.0
+    version: 0.160.0
   gsap:
     specifier: ^3.12.4
     version: 3.12.4
@@ -32,6 +35,12 @@ dependencies:
   react-dom:
     specifier: ^18
     version: 18.0.0(react@18.0.0)
+  react-scroll-percentage:
+    specifier: ^4.3.2
+    version: 4.3.2(react@18.0.0)
+  recoil:
+    specifier: ^0.7.7
+    version: 0.7.7(react-dom@18.0.0)(react@18.0.0)
   styled-components:
     specifier: ^6.1.6
     version: 6.1.6(react-dom@18.0.0)(react@18.0.0)
@@ -1733,6 +1742,10 @@ packages:
     resolution: {integrity: sha512-1ByAq8dD0W4aBZ/JArgaQvc0gyUfkGkP8mgAQa0qZGdpOKlSOhOf+WNXjoLimKaKG3Z4Iu6DKZtnyszqQeyqWQ==}
     dev: false
 
+  /hamt_plus@1.0.2:
+    resolution: {integrity: sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==}
+    dev: false
+
   /has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
     dev: true
@@ -2565,6 +2578,14 @@ packages:
       scheduler: 0.21.0
     dev: false
 
+  /react-intersection-observer@8.34.0(react@18.0.0):
+    resolution: {integrity: sha512-TYKh52Zc0Uptp5/b4N91XydfSGKubEhgZRtcg1rhTKABXijc4Sdr1uTp5lJ8TN27jwUsdXxjHXtHa0kPj704sw==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
+    dependencies:
+      react: 18.0.0
+    dev: false
+
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -2581,6 +2602,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.0.0
       scheduler: 0.21.0
+    dev: false
+
+  /react-scroll-percentage@4.3.2(react@18.0.0):
+    resolution: {integrity: sha512-6uEumDSvfzdiI4mFAMp/GhXXztW9ImG2Jwk2frP/SXwn9rMBBmP6Ta/+ZaIetBLnz1bNQoEGjaV6YvRoqT8ThQ==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.23.7
+      react: 18.0.0
+      react-intersection-observer: 8.34.0(react@18.0.0)
     dev: false
 
   /react-use-measure@2.1.1(react-dom@18.0.0)(react@18.0.0):
@@ -2613,6 +2644,23 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /recoil@0.7.7(react-dom@18.0.0)(react@18.0.0):
+    resolution: {integrity: sha512-8Og5KPQW9LwC577Vc7Ug2P0vQshkv1y3zG3tSSkWMqkWSwHmE+by06L8JtnGocjW6gcCvfwB3YtrJG6/tWivNQ==}
+    peerDependencies:
+      react: '>=16.13.1'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      hamt_plus: 1.0.2
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
+    dev: false
 
   /reflect.getprototypeof@1.0.4:
     resolution: {integrity: sha512-ECkTw8TmJwW60lOTR+ZkODISW6RQ8+2CL3COqtiJKLd6MmB45hN51HprHFziKLGkAuTGQhBb91V8cy+KHlaCjw==}

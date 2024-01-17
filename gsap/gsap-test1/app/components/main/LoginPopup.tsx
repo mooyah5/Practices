@@ -35,16 +35,16 @@ ILoginPopupProps) {
   };
 
   return (
-    <div className="absolute z-50 rounded-bl-[100px] bg-[#675647] text-neutral-50 p-10 flex flex-col gap-3 top-0 right-0 bg-opacity-90">
+    <div className="absolute z-50 rounded-bl-[100px] bg-[#675647] text-neutral-50 p-10 flex flex-col gap-3 top-5 right-5 bg-opacity-90">
       <button className="absolute top-10 right-10" onClick={onClose}>
-        <Image src={closeBtn} width={20} height={20} alt="close"></Image>
+        <Image src={closeBtn} width={15} height={15} alt="close"></Image>
       </button>
       <div className="flex flex-col gap-2 mt-16">
         <div className="flex flex-row items-center gap-2">
           <p className="w-[30px]">ID</p>
           <input
             name="id"
-            className="border border-neutral-200 rounded-md text-sm px-4 py-1 text-[#676547]"
+            className="border border-neutral-200 bg-neutral-300 focus:bg-white rounded-md text-sm px-4 py-1 text-[#676547]"
             placeholder="아이디"
             type="text"
             onChange={(e: any) => handleOnChange(e)}
@@ -56,7 +56,7 @@ ILoginPopupProps) {
           <p className="w-[30px]">PW</p>
           <input
             name="password"
-            className="border border-neutral-200 rounded-md text-sm px-4 py-1 text-[#676547]"
+            className="border border-neutral-200 bg-neutral-300 focus:bg-white rounded-md text-sm px-4 py-1 text-[#676547]"
             placeholder="비밀번호"
             onChange={(e: any) => handleOnChange(e)}
             value={password}

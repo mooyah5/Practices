@@ -14,6 +14,13 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    fontFamily: {
+      pret: ["Pretendard Variable", "Pretendard"],
+      nexon: ["var(--font-nexon)"],
+      sans: ["var(--font-notosanskr)"],
+      spoqa: ["var(--font-spoqa)"],
+      waterfall: ["var(--font-waterfall)"],
+    },
   },
   plugins: [],
 };

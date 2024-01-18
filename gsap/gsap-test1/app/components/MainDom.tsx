@@ -72,15 +72,14 @@ export default function MainDOM() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
     setHasRendered(true);
+    // SCROLL SMOOTH EFFECT - locomotive-scroll lib.
+    (async () => {
+      const LocomotiveScroll = (await import("locomotive-scroll")).default;
+      const locomotiveScroll = new LocomotiveScroll();
+    })();
   }, []);
   useGSAP(
     () => {
-      // SCROLL SMOOTH EFFECT - locomotive-scroll lib.
-      (async () => {
-        const LocomotiveScroll = (await import("locomotive-scroll")).default;
-        const locomotiveScroll = new LocomotiveScroll();
-      })();
-
       if (hasRendered) {
         if (skip) {
           introTimeline.pause();
@@ -89,7 +88,9 @@ export default function MainDOM() {
             .to(["#section-1-bg", "#section-1-nav"], { opacity: 0 })
             .to("#intro-logo", { opacity: 0 })
             .to("#intro-slider", { display: "none" })
+            // .add('test1', '<')
             .to("#intro-slider-2", { opacity: 0 });
+          // .add('test2', '<')
 
           setSkip(true);
           return;
@@ -125,6 +126,7 @@ export default function MainDOM() {
                 duration: 1,
               }
             )
+            .add("testLabel")
             .fromTo(
               "#mask-group",
               { scale: 1.6, opacity: 0 },
@@ -135,7 +137,8 @@ export default function MainDOM() {
                 onComplete: () => setSkip(true),
               },
               "<"
-            );
+            )
+            .add("testLabel2");
         }
 
         // Section02
@@ -547,7 +550,10 @@ export default function MainDOM() {
             {!skip ? (
               <button
                 className="absolute bottom-10 right-10 z-30 text-white"
-                onClick={() => setSkip(true)}
+                onClick={() => {
+                  introTimeline.play("addLabel1");
+                  setSkip(true);
+                }}
               >
                 skip
               </button>

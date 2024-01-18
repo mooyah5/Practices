@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@grcmichael/gscroll':
-    specifier: ^1.0.15
-    version: 1.0.15
   '@gsap/react':
     specifier: ^2.0.2
     version: 2.0.2(react@18.0.0)
@@ -35,9 +32,6 @@ dependencies:
   react-dom:
     specifier: ^18
     version: 18.0.0(react@18.0.0)
-  react-scroll-percentage:
-    specifier: ^4.3.2
-    version: 4.3.2(react@18.0.0)
   recoil:
     specifier: ^0.7.7
     version: 0.7.7(react-dom@18.0.0)(react@18.0.0)
@@ -120,12 +114,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@grcmichael/gscroll@1.0.15:
-    resolution: {integrity: sha512-zJX6P0Yxgb4Bt/EGZa1NSkyuVonUsYiKFKMBHNxJQaWZjZvXgpNUZfd0EbO1NrI5anr0xRmLQVGIVsn57usvIw==}
-    dependencies:
-      gsap: 3.12.4
-    dev: false
 
   /@gsap/react@2.0.2(react@18.0.0):
     resolution: {integrity: sha512-Uo2lOBlGcwmkIE9EcPdsyDfg+DRAoboVvuWgvVIrsJ2tIZHcpFab82YNV0iWj9CNfTzIqGP44ziXqsCMkc8OEw==}
@@ -2578,14 +2566,6 @@ packages:
       scheduler: 0.21.0
     dev: false
 
-  /react-intersection-observer@8.34.0(react@18.0.0):
-    resolution: {integrity: sha512-TYKh52Zc0Uptp5/b4N91XydfSGKubEhgZRtcg1rhTKABXijc4Sdr1uTp5lJ8TN27jwUsdXxjHXtHa0kPj704sw==}
-    peerDependencies:
-      react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
-    dependencies:
-      react: 18.0.0
-    dev: false
-
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -2602,16 +2582,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.0.0
       scheduler: 0.21.0
-    dev: false
-
-  /react-scroll-percentage@4.3.2(react@18.0.0):
-    resolution: {integrity: sha512-6uEumDSvfzdiI4mFAMp/GhXXztW9ImG2Jwk2frP/SXwn9rMBBmP6Ta/+ZaIetBLnz1bNQoEGjaV6YvRoqT8ThQ==}
-    peerDependencies:
-      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.23.7
-      react: 18.0.0
-      react-intersection-observer: 8.34.0(react@18.0.0)
     dev: false
 
   /react-use-measure@2.1.1(react-dom@18.0.0)(react@18.0.0):

@@ -1,20 +1,20 @@
 "use client";
 import "@/app/assets/css/home.css";
 
-import { useEffect, useRef, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import styled, { keyframes } from "styled-components";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
 import maskGroup from "@/public/maskGroup.png";
-import text_a from "@/public/text_a.png";
-import text_c from "@/public/text_c.png";
-import text_r from "@/public/text_r.png";
-import text_h from "@/public/text_h.png";
-import text_a_2 from "@/public/text_a_2.png";
-import text_r_2 from "@/public/text_r_2.png";
-import text_h_2 from "@/public/text_h_2.png";
+// import text_a from "@/public/text_a.png";
+// import text_c from "@/public/text_c.png";
+// import text_r from "@/public/text_r.png";
+// import text_h from "@/public/text_h.png";
+// import text_a_2 from "@/public/text_a_2.png";
+// import text_r_2 from "@/public/text_r_2.png";
+// import text_h_2 from "@/public/text_h_2.png";
 import section01_bg from "@/public/section01_bg.png";
 import section2img1 from "@/public/section2image1.png";
 import section2img2 from "@/public/section2image2.png";
@@ -66,6 +66,16 @@ export default function MainDOM() {
   let hoverImg = useRef(null);
   let imgBox = useRef(null);
 
+  function Marquee() {
+    const marquee: ReactElement[] = [];
+    for (let i = 0; i < 10; i++) {
+      marquee.push(
+        <span key={i}>Inspiring Create Visions Sparking Artistic Growth, </span>
+      );
+    }
+    return marquee;
+  }
+
   let introTimeline = gsap.timeline();
   let tl = gsap.timeline();
 
@@ -82,17 +92,6 @@ export default function MainDOM() {
     () => {
       if (hasRendered) {
         if (skip) {
-          introTimeline.pause();
-          introTimeline.progress(1);
-          introTimeline
-            .to(["#section-1-bg", "#section-1-nav"], { opacity: 0 })
-            .to("#intro-logo", { opacity: 0 })
-            .to("#intro-slider", { display: "none" })
-            // .add('test1', '<')
-            .to("#intro-slider-2", { opacity: 0 });
-          // .add('test2', '<')
-
-          setSkip(true);
           return;
         } else {
           introTimeline
@@ -113,6 +112,7 @@ export default function MainDOM() {
               opacity: 0,
               duration: 1,
             })
+            // .add('testLabel')
             .from(["#section-1-bg", "#section-1-nav"], {
               delay: 0.5,
               opacity: 0,
@@ -126,7 +126,6 @@ export default function MainDOM() {
                 duration: 1,
               }
             )
-            .add("testLabel")
             .fromTo(
               "#mask-group",
               { scale: 1.6, opacity: 0 },
@@ -137,8 +136,7 @@ export default function MainDOM() {
                 onComplete: () => setSkip(true),
               },
               "<"
-            )
-            .add("testLabel2");
+            );
         }
 
         // Section02
@@ -278,59 +276,59 @@ export default function MainDOM() {
         );
 
         // SECTION 05
-        gsap.fromTo(
-          section05_text_1.current,
-          { opacity: 0, y: 20 },
-          {
-            // duration: 2,
-            opacity: 1,
-            y: 0,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quaerat, ipsam quibusdam nam ad repudiandae",
-            scrollTrigger: {
-              start: "start center",
-              end: "end top",
-              trigger: section05_ref.current,
-              // markers: true,
-              toggleActions: "lorem",
-              scrub: 0.3,
-            },
-          }
-        );
-        gsap.fromTo(
-          section05_text_2.current,
-          { opacity: 0, y: 20, delay: 1 },
-          {
-            opacity: 1,
-            rotate: 3,
-            y: 0,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing eliae",
-            scrollTrigger: {
-              start: "start center",
-              end: "end top",
-              trigger: section05_ref.current,
-              // markers: true,
-              toggleActions: "restart none reverse none",
-              scrub: 0.3,
-            },
-          }
-        );
-        gsap.fromTo(
-          section05_text_3.current,
-          { opacity: 0, rotate: -10, y: 20, delay: 2 },
-          {
-            opacity: 1,
-            rotate: 3,
-            y: 0,
-            text: "rotate text",
-            scrollTrigger: {
-              start: "start center",
-              end: "end top",
-              trigger: section05_ref.current,
-              toggleActions: "restart none reverse none",
-              scrub: 0.3,
-            },
-          }
-        );
+        // gsap.fromTo(
+        //   section05_text_1.current,
+        //   { opacity: 0, y: 20 },
+        //   {
+        //     // duration: 2,
+        //     opacity: 1,
+        //     y: 0,
+        //     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quaerat, ipsam quibusdam nam ad repudiandae",
+        //     scrollTrigger: {
+        //       start: "start center",
+        //       end: "end top",
+        //       trigger: section05_ref.current,
+        //       // markers: true,
+        //       toggleActions: "lorem",
+        //       scrub: 0.3,
+        //     },
+        //   }
+        // );
+        // gsap.fromTo(
+        //   section05_text_2.current,
+        //   { opacity: 0, y: 20, delay: 1 },
+        //   {
+        //     opacity: 1,
+        //     rotate: 3,
+        //     y: 0,
+        //     text: "Lorem ipsum dolor sit amet consectetur adipisicing eliae",
+        //     scrollTrigger: {
+        //       start: "start center",
+        //       end: "end top",
+        //       trigger: section05_ref.current,
+        //       // markers: true,
+        //       toggleActions: "restart none reverse none",
+        //       scrub: 0.3,
+        //     },
+        //   }
+        // );
+        // gsap.fromTo(
+        //   section05_text_3.current,
+        //   { opacity: 0, rotate: -10, y: 20, delay: 2 },
+        //   {
+        //     opacity: 1,
+        //     rotate: 3,
+        //     y: 0,
+        //     text: "rotate text",
+        //     scrollTrigger: {
+        //       start: "start center",
+        //       end: "end top",
+        //       trigger: section05_ref.current,
+        //       toggleActions: "restart none reverse none",
+        //       scrub: 0.3,
+        //     },
+        //   }
+        // );
 
         // SECTION 06 갤러리
         const gallery = document.querySelectorAll(".gallery");
@@ -549,13 +547,13 @@ export default function MainDOM() {
           <div className="relative">
             {!skip ? (
               <button
-                className="absolute bottom-10 right-10 z-30 text-white"
+                className="font-pret absolute bottom-[10%] left-1/2 z-30 -translate-x-1/2 font-extralight text-white"
                 onClick={() => {
-                  introTimeline.play("addLabel1");
+                  introTimeline.play(10);
                   setSkip(true);
                 }}
               >
-                skip
+                SKIP
               </button>
             ) : null}
             <IntroSlider id="intro-slider">
@@ -714,7 +712,7 @@ export default function MainDOM() {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_1630_59)">
+                      <g clipPath="url(#clip0_1630_59)">
                         <path
                           opacity="0.9"
                           d="M23.1428 29.5714C23.1428 13.7919 35.9347 1 51.7143 1C67.4938 1 80.2857 13.7919 80.2857 29.5714L80.2856 89.5713M6 50.8574L56 50.8574M56 50.8574L46 40.8574M56 50.8574L46 60.8574"
@@ -764,23 +762,13 @@ export default function MainDOM() {
                 alt="mask group"
               />
 
-              <div id="section-1-marquee" className="overflow-hidden w-screen">
-                <MovingSpan className="-z-10 text-[34px] font-nexon">
-                  Inspiring Create Visions Sparking Artistic Growth, Inspiring
-                  Create Visions Sparking Artistic Growth, Inspiring Create
-                  Visions Sparking Artistic Growth, Inspiring Create Visions
-                  Sparking Artistic Growth, Inspiring Create Visions Sparking
-                  Artistic Growth, Inspiring Create Visions Sparking Artistic
-                  Growth, Inspiring Create Visions Sparking Artistic Growth,
-                  Inspiring Create Visions Sparking Artistic Growth, Inspiring
-                  Create Visions Sparking Artistic Growth, Inspiring Create
-                  Visions Sparking Artistic Growth, Inspiring Create Visions
-                  Sparking Artistic Growth, Inspiring Create Visions Sparking
-                  Artistic Growth, Inspiring Create Visions Sparking Artistic
-                  Growth, Inspiring Create Visions Sparking Artistic Growth,
-                  Inspiring Create Visions Sparking Artistic Growth, Inspiring
-                  Create Visions Sparking Artistic Growth,
-                </MovingSpan>
+              <div className="w-screen overflow-hidden">
+                <div className="marquee-text whitespace-nowrap">
+                  <Marquee />
+                </div>
+                {/* <div className="marquee-text-2 whitespace-nowrap">
+                <Marquee />
+              </div> */}
               </div>
             </div>
           </div>
@@ -952,15 +940,13 @@ export default function MainDOM() {
                   width={350}
                   height={0}
                 />
-
                 <Image
-                  className=" mix-blend-soft-light content-col-wrapper-class absolute top-1/2 -translate-y-1/2 left-1/2 h-auto"
+                  className=" mix-blend-soft-light content-col-wrapper-class absolute top-1/2 -translate-y-1/2 w-[28vw] left-1/2 h-auto"
                   src={section06_img3.src}
                   alt=""
                   width={400}
                   height={0}
                 />
-
                 <Image
                   className=" mix-blend-soft-light content-col-wrapper-class absolute bottom-0 left-1/2 -translate-x-1/2 h-auto"
                   src={section06_img4.src}

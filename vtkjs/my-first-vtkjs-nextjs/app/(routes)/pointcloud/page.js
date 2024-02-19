@@ -3,27 +3,29 @@ import { useState, useRef, useEffect } from "react";
 
 import "@kitware/vtk.js/Rendering/Profiles/Geometry";
 
-import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
+// import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
+import vtkGenericRenderWindow from "@kitware/vtk.js/Rendering/Misc/GenericRenderWindow";
 
 import vtkActor from "@kitware/vtk.js/Rendering/Core/Actor";
 import vtkMapper from "@kitware/vtk.js/Rendering/Core/Mapper";
-import vtkConeSource from "@kitware/vtk.js/Filters/Sources/ConeSource";
 import vtkPolyDataReader from "@kitware/vtk.js/IO/XML/XMLPolyDataReader";
 
 export default function Home() {
   const vtkContainerRef = useRef(null);
   const context = useRef(null);
-  const [coneResolution, setConeResolution] = useState(8);
   const [representation, setRepresentation] = useState(2);
 
   useEffect(() => {
     if (!context.current) {
       // 포인트클라우드
-      const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
-        background: [0, 0, 0],
+      const genericRenderWindow = vtkGenericRenderWindow.newInstance({
+        rootContainer: vtkContainerRef.current,
+        controlSize: 25,
       });
-      const renderer = fullScreenRenderer.getRenderer();
-      const renderWindow = fullScreenRenderer.getRenderWindow();
+      genericRenderWindow.setContainer(vtkContainerRef.current);
+
+      const renderer = genericRenderWindow.getRenderer();
+      const renderWindow = genericRenderWindow.getRenderWindow();
       const polyDataReader = vtkPolyDataReader.newInstance();
       const mapper = vtkMapper.newInstance();
       const actor = vtkActor.newInstance();
@@ -36,34 +38,12 @@ export default function Home() {
         renderer.addActor(actor);
         renderer.resetCamera();
         renderWindow.render();
+        genericRenderWindow.resize();
       });
-
-      // 포인트클라우드
-
-      // const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
-      //   rootContainer: vtkContainerRef.current,
-      // });
-      // const coneSource = vtkConeSource.newInstance({ height: 1.0 });
-
-      // const mapper = vtkMapper.newInstance();
-
-      // mapper.setInputConnection(coneSource.getOutputPort());
-
-      // const actor = vtkActor.newInstance();
-      // actor.setMapper(mapper);
-
-      // const renderer = fullScreenRenderer.getRenderer();
-      // const renderWindow = fullScreenRenderer.getRenderWindow();
-
-      // renderer.addActor(actor);
-      // renderer.resetCamera();
-      // renderWindow.render();
-
       context.current = {
-        fullScreenRenderer,
+        genericRenderWindow,
         renderWindow,
         renderer,
-        // coneSource,
         actor,
         mapper,
       };
@@ -71,23 +51,14 @@ export default function Home() {
 
     return () => {
       if (context.current) {
-        const { fullScreenRenderer, actor, mapper } = context.current;
+        const { genericRenderWindow, actor, mapper } = context.current;
         actor.delete();
         mapper.delete();
-        // coneSource.delete();
-        fullScreenRenderer.delete();
+        genericRenderWindow.delete();
         context.current = null;
       }
     };
   }, [vtkContainerRef]);
-
-  // useEffect(() => {
-  //   if (context.current) {
-  //     const { coneSource, renderWindow } = context.current;
-  //     coneSource.setResolution(coneResolution);
-  //     renderWindow.render();
-  //   }
-  // }, [coneResolution]);
 
   useEffect(() => {
     if (context.current) {
@@ -98,8 +69,16 @@ export default function Home() {
   }, [representation]);
 
   return (
-    <div>
-      <div ref={vtkContainerRef} />
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div style={{ width: "300px" }} ref={vtkContainerRef} />
       <table
         style={{
           position: "absolute",
@@ -107,6 +86,7 @@ export default function Home() {
           left: "0px",
           background: "white",
           padding: "12px",
+          zIndex: 100,
         }}
       >
         <tbody>
@@ -123,30 +103,8 @@ export default function Home() {
               </select>
             </td>
           </tr>
-          <tr>
-            <td>
-              <input
-                type="range"
-                min="4"
-                max="80"
-                value={coneResolution}
-                onChange={(ev) => setConeResolution(Number(ev.target.value))}
-              />
-            </td>
-          </tr>
         </tbody>
       </table>
-      <a
-        style={{
-          position: "absolute",
-          top: "100px",
-          left: "30px",
-          background: "blue",
-          padding: "12px",
-          fontColor: "white",
-        }}
-        href="/asdf"
-      ></a>
     </div>
   );
 }

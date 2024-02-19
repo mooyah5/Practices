@@ -24,6 +24,21 @@ export default function RootLayout({ children }) {
             borderRadius: "100px",
             zIndex: 100,
           }}
+          href="/"
+        >
+          home
+        </a>
+        <a
+          style={{
+            position: "absolute",
+            top: "150px",
+            left: "30px",
+            backgroundColor: "aliceblue",
+            padding: "8px 24px",
+            fontColor: "white",
+            borderRadius: "100px",
+            zIndex: 100,
+          }}
           href="/cylinder"
         >
           cylinder
@@ -31,7 +46,7 @@ export default function RootLayout({ children }) {
         <a
           style={{
             position: "absolute",
-            top: "150px",
+            top: "200px",
             left: "30px",
             backgroundColor: "aliceblue",
             padding: "8px 24px",

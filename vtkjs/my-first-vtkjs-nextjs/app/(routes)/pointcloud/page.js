@@ -8,6 +8,7 @@ import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreen
 import vtkActor from "@kitware/vtk.js/Rendering/Core/Actor";
 import vtkMapper from "@kitware/vtk.js/Rendering/Core/Mapper";
 import vtkConeSource from "@kitware/vtk.js/Filters/Sources/ConeSource";
+import vtkPolyDataReader from "@kitware/vtk.js/IO/XML/XMLPolyDataReader";
 
 export default function Home() {
   const vtkContainerRef = useRef(null);
@@ -17,30 +18,52 @@ export default function Home() {
 
   useEffect(() => {
     if (!context.current) {
+      // 포인트클라우드
       const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
-        rootContainer: vtkContainerRef.current,
+        background: [0, 0, 0],
       });
-      const coneSource = vtkConeSource.newInstance({ height: 1.0 });
-
-      const mapper = vtkMapper.newInstance();
-
-      mapper.setInputConnection(coneSource.getOutputPort());
-
-      const actor = vtkActor.newInstance();
-      actor.setMapper(mapper);
-
       const renderer = fullScreenRenderer.getRenderer();
       const renderWindow = fullScreenRenderer.getRenderWindow();
+      const polyDataReader = vtkPolyDataReader.newInstance();
+      const mapper = vtkMapper.newInstance();
+      const actor = vtkActor.newInstance();
+      polyDataReader.setUrl("/vtp/earth.vtp").then(() => {
+        const polyData = polyDataReader.getOutputData(0);
+        console.log(polyData);
+        mapper.setInputData(polyData);
+        actor.setMapper(mapper);
 
-      renderer.addActor(actor);
-      renderer.resetCamera();
-      renderWindow.render();
+        renderer.addActor(actor);
+        renderer.resetCamera();
+        renderWindow.render();
+      });
+
+      // 포인트클라우드
+
+      // const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
+      //   rootContainer: vtkContainerRef.current,
+      // });
+      // const coneSource = vtkConeSource.newInstance({ height: 1.0 });
+
+      // const mapper = vtkMapper.newInstance();
+
+      // mapper.setInputConnection(coneSource.getOutputPort());
+
+      // const actor = vtkActor.newInstance();
+      // actor.setMapper(mapper);
+
+      // const renderer = fullScreenRenderer.getRenderer();
+      // const renderWindow = fullScreenRenderer.getRenderWindow();
+
+      // renderer.addActor(actor);
+      // renderer.resetCamera();
+      // renderWindow.render();
 
       context.current = {
         fullScreenRenderer,
         renderWindow,
         renderer,
-        coneSource,
+        // coneSource,
         actor,
         mapper,
       };
@@ -48,24 +71,23 @@ export default function Home() {
 
     return () => {
       if (context.current) {
-        const { fullScreenRenderer, coneSource, actor, mapper } =
-          context.current;
+        const { fullScreenRenderer, actor, mapper } = context.current;
         actor.delete();
         mapper.delete();
-        coneSource.delete();
+        // coneSource.delete();
         fullScreenRenderer.delete();
         context.current = null;
       }
     };
   }, [vtkContainerRef]);
 
-  useEffect(() => {
-    if (context.current) {
-      const { coneSource, renderWindow } = context.current;
-      coneSource.setResolution(coneResolution);
-      renderWindow.render();
-    }
-  }, [coneResolution]);
+  // useEffect(() => {
+  //   if (context.current) {
+  //     const { coneSource, renderWindow } = context.current;
+  //     coneSource.setResolution(coneResolution);
+  //     renderWindow.render();
+  //   }
+  // }, [coneResolution]);
 
   useEffect(() => {
     if (context.current) {
@@ -114,6 +136,17 @@ export default function Home() {
           </tr>
         </tbody>
       </table>
+      <a
+        style={{
+          position: "absolute",
+          top: "100px",
+          left: "30px",
+          background: "blue",
+          padding: "12px",
+          fontColor: "white",
+        }}
+        href="/asdf"
+      ></a>
     </div>
   );
 }

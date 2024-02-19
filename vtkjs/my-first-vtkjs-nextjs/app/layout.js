@@ -11,7 +11,39 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} style={{ position: "relative" }}>
+        {children}
+        <a
+          style={{
+            position: "absolute",
+            top: "100px",
+            left: "30px",
+            backgroundColor: "aliceblue",
+            padding: "8px 24px",
+            fontColor: "white",
+            borderRadius: "100px",
+            zIndex: 100,
+          }}
+          href="/cylinder"
+        >
+          cylinder
+        </a>
+        <a
+          style={{
+            position: "absolute",
+            top: "150px",
+            left: "30px",
+            backgroundColor: "aliceblue",
+            padding: "8px 24px",
+            fontColor: "white",
+            borderRadius: "100px",
+            zIndex: 100,
+          }}
+          href="/pointcloud"
+        >
+          pointcloud
+        </a>
+      </body>
     </html>
   );
 }

@@ -58,6 +58,21 @@ export default function RootLayout({ children }) {
         >
           pointcloud
         </a>
+        <a
+          style={{
+            position: "absolute",
+            top: "250px",
+            left: "30px",
+            backgroundColor: "aliceblue",
+            padding: "8px 24px",
+            fontColor: "white",
+            borderRadius: "100px",
+            zIndex: 100,
+          }}
+          href="/json_pointcloud"
+        >
+          json_pointcloud
+        </a>
       </body>
     </html>
   );

@@ -1,0 +1,27 @@
+@import "../../../style/mixin";
+$input_num: 0;
+$color_list: (red, blue);
+$font_size: (8px, 10px, 12px, 16px, 20px, 32px);
+
+.header {
+  background-color: aquamarine;
+}
+
+.inputs {
+  @include flex(row, center, center);
+  gap: 4px;
+
+  input {
+    border: 1px solid;
+  }
+
+  @for $i from 1 to 3 {
+    input {
+      &:nth-child(#{$i}) {
+        border-color: nth($color_list, $i);
+        color: nth($color_list, $i);
+        font-size: nth($font-size, 5);
+      }
+    }
+  }
+}

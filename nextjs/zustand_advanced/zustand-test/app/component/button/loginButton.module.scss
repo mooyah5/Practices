@@ -6,11 +6,11 @@
   margin-right: 10px;
 }
 
-$num: 1; // number
+$num: 3; // number
 $color_list: (red, yellow, orange); // array
 $def_font: "inter"; // string
 
 .h1 {
   font-family: $def_font;
-  color: nth($def_font, $num);
+  color: nth($color_list, $num);
 }

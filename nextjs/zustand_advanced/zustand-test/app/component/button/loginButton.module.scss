@@ -3,4 +3,14 @@
   color: white;
   border-radius: 10px;
   padding: 8px 12px;
+  margin-right: 10px;
+}
+
+$num: 1; // number
+$color_list: (red, yellow, orange); // array
+$def_font: "inter"; // string
+
+.h1 {
+  font-family: $def_font;
+  color: nth($def_font, $num);
 }

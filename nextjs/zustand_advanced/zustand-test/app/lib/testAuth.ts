@@ -7,6 +7,7 @@ interface TestAuth {
   setLogin: () => void;
   setLogout: () => void;
   setName: (newName: string) => void;
+  setAge: () => void;
   consoleName: () => void;
 }
 
@@ -28,6 +29,7 @@ const useTestAuthStore = create<TestAuth>((set) => ({
       isLoggedin: false,
     })),
   setName: (newName: string) => set(() => ({ name: newName })),
+  setAge: () => set((state) => ({ age: state.age + 1 })),
 }));
 
 export default useTestAuthStore;

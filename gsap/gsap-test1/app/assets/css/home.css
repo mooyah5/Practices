@@ -1,0 +1,48 @@
+.con5 {
+  background: #fff;
+}
+.con5 .imgBox {
+  position: absolute;
+  opacity: 0;
+  z-index: -10;
+  mix-blend-mode: difference;
+}
+
+/* #my-scrollbar {
+  width: 500px;
+  height: 500px;
+  overflow: auto;
+} */
+
+/* .accordion-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-out;
+} */
+
+.marquee-text {
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-text-2 {
+  animation: marquee2 20s linear infinite;
+  position: absolute;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}

@@ -1,4 +1,4 @@
-import MainDOM from "@/components/home/MainDom";
+import MainDOM from "@/components/MainDom";
 
 export default function Home() {
   return (

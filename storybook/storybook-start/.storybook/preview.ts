@@ -1,4 +1,6 @@
 import type { Preview } from "@storybook/react";
+import '../src/index.css'
+// 추후 font설정도 추가
 
 const preview: Preview = {
   parameters: {

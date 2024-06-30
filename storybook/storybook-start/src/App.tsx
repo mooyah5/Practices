@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <h1 className="underline">Vite + React</h1>
+      <h1 className="underline text-secondary text-2xl">Vite + React</h1>
       <div className="card">
         <PrimaryButton onClick={() => setCount((count) => count + 1)}>
           count is {count}

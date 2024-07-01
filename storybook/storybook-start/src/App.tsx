@@ -10,7 +10,7 @@ function App() {
       <h1 className="underline text-secondary text-2xl">Vite + React</h1>
       <div className="card">
         <PrimaryButton onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          {`count is ${count.toString()}`}
         </PrimaryButton>
         <TagButton onClick={() => setCount((count) => count - 1)}>
           asdf

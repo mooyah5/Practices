@@ -15,6 +15,9 @@ function App() {
     // 직접 값 변경보다 확실한 변경 가능 (연달아 작성해도 작동함)
     setChosenCount((prevChosenCount) => prevChosenCount + 1);
 
+    // 추가로, 두 번 변경했는데도 컴포넌트 렌더링이 한 번만 일어남
+    // 리액트가 state batching을 한 것
+
     // 이건 작동 안함!
     console.log(chosenCount); // 이전 값을 참조 (리액트의 스케줄링 때문)
   }

@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import IconButton from "../UI/IconButton.jsx";
 import MinusIcon from "../UI/Icons/MinusIcon.jsx";
@@ -59,6 +59,17 @@ const CounterVer2 = memo(function Counter({ initialCount }) {
       ...prevChanges,
     ]);
   }, []);
+
+  // useEffect(() => {
+  //   // useEffect 사용은 지양해야 한다.
+  //   // 컴포넌트 렌더링 후 실행되는데, 여기서 state를 바꾸면 한 번 더 렌더링되므로
+  //   setCounterChanges([
+  //     {
+  //       value: initialCount,
+  //       id: Math.random() * 1000,
+  //     },
+  //   ]);
+  // }, [initialCount]);
 
   return (
     <section className="counter">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 import IconButton from "../UI/IconButton.jsx";
 import MinusIcon from "../UI/Icons/MinusIcon.jsx";
@@ -62,13 +62,21 @@ const Counter = memo(function Counter({ initialCount }) {
 
   const [counter, setCounter] = useState(initialCount);
 
-  function handleDecrement() {
-    setCounter((prevCounter) => prevCounter - 1);
-  }
+  // handleDecrement, handleIncrement함수는 Counter 컴포넌트의 중첩함수이므로
+  // 이 Counter 컴포넌트가 실행될 때마다 다시 생성된다.
 
-  function handleIncrement() {
+  // => useCallback으로 최적화 (버튼을 클릭해도 Icon 버튼들과 중첩 컴포넌트들이 재실행되지 않음)
+  // const handleDecrement = useCallback(() => {
+  //   setCounter((prevCounter) => prevCounter - 1);
+  // }, []);
+
+  const handleDecrement = useCallback(() => {
+    setCounter((prevCounter) => prevCounter - 1);
+  }, []);
+
+  const handleIncrement = useCallback(() => {
     setCounter((prevCounter) => prevCounter + 1);
-  }
+  }, []);
 
   return (
     <section className="counter">

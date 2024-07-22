@@ -1,5 +1,6 @@
 import { log } from "../../../log.ts";
 
+// million-ignore
 export default function MinusIcon(props) {
   log("<MinusIcon /> rendered", 3);
 

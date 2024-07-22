@@ -4,6 +4,7 @@ import Counter from "./components/Counter/Counter.jsx";
 import Header from "./components/Header.jsx";
 import { log } from "./log.ts";
 import ConfigureCounter from "./components/Counter/ConfigureCounter.jsx";
+import CounterVer2 from "./components/Counter/CounterVer2.jsx";
 
 function App() {
   log("<App /> rendered");
@@ -18,7 +19,10 @@ function App() {
       <Header />
       <main>
         <ConfigureCounter onSet={handleSetCount} />
-        <Counter initialCount={chosenCount} />
+        {/* <Counter initialCount={chosenCount} />
+        <Counter initialCount={0} /> */}
+        <CounterVer2 initialCount={chosenCount} />
+        <CounterVer2 initialCount={0} />
       </main>
     </>
   );

@@ -5,6 +5,7 @@ import MinusIcon from "../UI/Icons/MinusIcon.jsx";
 import PlusIcon from "../UI/Icons/PlusIcon.jsx";
 import CounterOutput from "./CounterOutput.jsx";
 import { log } from "../../log.ts";
+import CounterHistory from "./CounterHistory.jsx";
 
 function isPrime(number) {
   log("Calculating if is prime number", 2, "other");
@@ -27,10 +28,15 @@ const CounterVer2 = memo(function Counter({ initialCount }) {
   log("<Counter /> rendered", 1);
 
   // 의존성에 사용하기 위한 initialCount 배열
-  const [counterChanges, setCounterChanges] = useState([initialCount]);
+  const [counterChanges, setCounterChanges] = useState([
+    {
+      value: initialCount,
+      id: Math.random() * 1000,
+    },
+  ]);
 
   const currentCounter = counterChanges.reduce(
-    (prevCounter, counterChange) => prevCounter + counterChange,
+    (prevCounter, counterChange) => prevCounter + counterChange.value,
     0
   );
 
@@ -40,12 +46,18 @@ const CounterVer2 = memo(function Counter({ initialCount }) {
   );
   const handleDecrement = useCallback(() => {
     // setCounter((prevCounter) => prevCounter - 1);
-    setCounterChanges((prevChanges) => [-1, ...prevChanges]);
+    setCounterChanges((prevChanges) => [
+      { value: -1, id: Math.random() * 1000 },
+      ...prevChanges,
+    ]);
   }, []);
 
   const handleIncrement = useCallback(() => {
     // setCounter((prevCounter) => prevCounter + 1);
-    setCounterChanges((prevChanges) => [1, ...prevChanges]);
+    setCounterChanges((prevChanges) => [
+      { value: 1, id: Math.random() * 1000 },
+      ...prevChanges,
+    ]);
   }, []);
 
   return (
@@ -63,6 +75,7 @@ const CounterVer2 = memo(function Counter({ initialCount }) {
           Increment
         </IconButton>
       </p>
+      <CounterHistory history={counterChanges} />
     </section>
   );
 });

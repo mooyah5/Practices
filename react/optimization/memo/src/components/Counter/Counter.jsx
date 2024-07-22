@@ -23,6 +23,8 @@ function isPrime(number) {
   return true;
 }
 
+// 현재: ConfigureCounter로 인해 memo로 감싼 게 별 의미 없음.
+
 // React.memo로 컴포넌트 감싸기
 // 컴포넌트가 정상 재실행 될 때 이전 props값과 새로 받을 props값을 비교하여
 // 변경이 없다면 memo가 렌더링을 저지하고 이전에 렌더된 결과를 재사용한다. (자식들도 자연히 마찬가지)
@@ -86,3 +88,4 @@ const Counter = memo(function Counter({ initialCount }) {
     </section>
   );
 });
+export default Counter;

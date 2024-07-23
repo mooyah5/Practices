@@ -12,9 +12,13 @@ export function useFetch(fetchFn, initialValue) {
     async function fetchData() {
       setIsFetching(true);
       try {
-        const data = await fetchFn();
-        setFetchedData(data);
+        if (fetchFn) {
+          const data = await fetchFn();
+          setFetchedData(data);
+          console.log("fetched data", data);
+        }
       } catch (error) {
+        console.log(error);
         setError({ message: error.message || "Failed to fetch data." });
       }
 
@@ -24,9 +28,14 @@ export function useFetch(fetchFn, initialValue) {
     fetchData();
   }, [fetchFn]);
 
+  useEffect(() => {
+    console.log("useFetch fetchedData", fetchedData);
+  }, [fetchedData]);
+
   return {
     isFetching,
     fetchedData,
+    setFetchedData,
     error,
   };
 }

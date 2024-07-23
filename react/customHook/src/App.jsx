@@ -5,35 +5,22 @@ import Modal from "./components/Modal.jsx";
 import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
 import logoImg from "./assets/logo.png";
 import AvailablePlaces from "./components/AvailablePlaces.jsx";
-import { fetchUserPlaces, updateUserPlaces } from "./http.js";
 import Error from "./components/Error.jsx";
+import { useFetch } from "./hooks/useFetch.js";
+import { fetchUserPlaces, updateUserPlaces } from "./http.js";
 
 function App() {
   const selectedPlace = useRef();
 
-  const [userPlaces, setUserPlaces] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState();
+  const {
+    isFetching,
+    fetchedData: userPlaces,
+    setFetchedData: setUserPlaces,
+    error,
+  } = useFetch(fetchUserPlaces, []);
 
   const [errorUpdatingPlaces, setErrorUpdatingPlaces] = useState();
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  useEffect(() => {
-    async function fetchPlaces() {
-      setIsFetching(true);
-      try {
-        const places = await fetchUserPlaces();
-        setUserPlaces(places);
-      } catch (error) {
-        setError({ message: error.message || "Failed to fetch user places." });
-      }
-
-      setIsFetching(false);
-    }
-
-    fetchPlaces();
-  }, []);
 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
@@ -45,7 +32,7 @@ function App() {
   }
 
   async function handleSelectPlace(selectedPlace) {
-    // await updateUserPlaces([selectedPlace, ...userPlaces]);
+    await updateUserPlaces([selectedPlace, ...userPlaces]);
 
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
@@ -88,7 +75,7 @@ function App() {
 
       setModalIsOpen(false);
     },
-    [userPlaces]
+    [userPlaces, setUserPlaces]
   );
 
   function handleError() {

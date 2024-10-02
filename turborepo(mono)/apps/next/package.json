@@ -1,0 +1,23 @@
+{
+  "name": "@repo/next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo --port 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/ui": "workspace:*",
+    "next": "14.2.6",
+    "@ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/ui": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "eslint-config-next": "14.2.6"
+  }
+}

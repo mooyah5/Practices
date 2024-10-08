@@ -1,0 +1,618 @@
+/* reset css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+input {
+  border: none;
+  background-color: transparent;
+}
+
+/* common css */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+div {
+  box-sizing: border-box;
+}
+
+/* 컬러 한 번에 쓰려고 정의해두었습니다. */
+:root {
+  --lighter-gray: #e6e6eb;
+  --light-gray: #b9b9c2;
+  --gray: #909092;
+  --dark-gray: #2d3c31;
+
+  --blue: #1b60e2;
+
+  --bg-hertz: #f5f1eb;
+  --bg-dollar: #f2ebec;
+  --thrifty: #e5eaed;
+}
+
+/* layout css */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.main-header h2 {
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: 800;
+}
+.main-header label {
+  font-size: 15px;
+  color: var(--gray);
+}
+
+.res-rental-item .mobile-header {
+  display: none;
+}
+
+.res-rental-list {
+  display: flex;
+  gap: 48px;
+  width: 100%;
+  flex-direction: column;
+}
+.res-rental-item {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.res-rental-item > .top {
+  width: 100%;
+  display: flex;
+}
+
+.res-rental-item > .top > .info-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+}
+.res-rental-item > .top > .info-wrap .info {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  flex-direction: column;
+}
+/* .res-rental-item > .top > .info-wrap .info > button {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 140%;
+  color: var(--gray);
+  transition-duration: 200;
+  cursor: pointer;
+}
+
+.res-rental-item > .top > .info-wrap .info > button img {
+  width: 18px;
+} */
+.open-modal-button {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 140%;
+  color: var(--gray);
+  transition-duration: 200;
+  cursor: pointer;
+}
+.open-modal-button p {
+  white-space: nowrap;
+}
+.open-modal-button img {
+  width: 18px;
+}
+
+.res-rental-item > .top > .info-wrap .logo {
+  height: 32px;
+  margin-bottom: 8px;
+}
+.res-rental-item > .top > .info-wrap .info .title {
+  font-size: 24px;
+  font-weight: 800;
+  list-style: 120%;
+}
+.res-rental-item > .top > .info-wrap .info .sub-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  color: var(--gray);
+  margin-bottom: 12px;
+  display: flex;
+}
+.res-rental-item > .top > .image-wrap {
+  width: 249px;
+  height: 140px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.res-rental-item > .top > .image-wrap img {
+  width: 168px;
+  height: 98px;
+  object-fit: cover;
+}
+.res-rental-item > .top > .image-wrap.bg-hertz {
+  background-color: var(--bg-hertz);
+}
+.res-rental-item > .top > .image-wrap.bg-dollar {
+  background-color: var(--bg-dollar);
+}
+.res-rental-item > .top > .image-wrap.bg-thrifty {
+  background-color: var(--bg-thrifty);
+}
+
+.res-rental-item > .desc {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.res-rental-item > .desc .info {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 12px 0;
+}
+.res-rental-item > .desc .info .title {
+  font-size: 16px;
+  font-weight: 800;
+}
+.res-rental-item > .desc .info .second {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.res-rental-item > .desc .info:nth-child(1) {
+  border-bottom: 1px solid var(--lighter-gray);
+}
+
+.res-rental-item > .desc .info .price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.res-rental-item > .desc .info .price div:nth-child(1) {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--gray);
+  text-decoration: line-through;
+  line-height: 20px;
+}
+.res-rental-item > .desc .info .price div:nth-child(1) span {
+  letter-spacing: -2%;
+  font-size: 13px;
+  line-height: 100%;
+}
+
+.res-rental-item > .desc .info .price div:nth-child(2) {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+}
+.res-rental-item > .desc .info .price div:nth-child(2) span {
+  letter-spacing: -2%;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 140%;
+}
+.res-rental-item > .desc .info .button button {
+  width: 112px;
+  height: 40px;
+  background-color: var(--blue);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 140%;
+  border-radius: 20px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  flex-direction: column;
+}
+
+.modal.open {
+  display: flex;
+}
+.close-modal-button.close-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+}
+.close-modal-button.close-icon:hover {
+  background-color: var(--lighter-gray);
+}
+.close-modal-button.close-icon img {
+  width: 14px;
+}
+
+.modal-wrapper {
+  width: 760px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 8px;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+  padding-bottom: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+.modal-content {
+  display: flex;
+}
+.modal .modal-content .info {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px;
+}
+.modal .modal-content .info .title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.modal .modal-content .info .title-wrapper .title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 120%;
+}
+.modal .modal-content .info .title-wrapper .title > button {
+  margin-left: 8px;
+  padding: 0 10px;
+  height: 24px;
+  background-color: #ffde51;
+  border-radius: 24px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.modal .modal-content .info .title-wrapper .sub-title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.modal .modal-content .info .desc-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.modal .modal-content .info .desc-wrapper > div {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 140%;
+  color: var(--dark-gray);
+}
+
+.modal .modal-content .info .desc-wrapper .bm-8 {
+  margin-bottom: 8px;
+}
+.modal .modal-content .info .table-wrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.modal .modal-content .info .table-wrapper > div {
+  border: 1px solid var(--lighter-gray);
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal .modal-content .info .table-wrapper > div > div {
+  height: 37px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: var(--gray);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 140%;
+  flex-shrink: 1;
+}
+.modal .modal-content .info .table-wrapper > div > div:first-child {
+  padding: 10px;
+  border-bottom: 1px solid var(--lighter-gray);
+}
+.modal .modal-content .info .table-wrapper > div > div:nth-child(2) {
+  padding: 3px;
+
+  text-align: center;
+}
+.modal .modal-content .info .table-wrapper > div:last-child {
+  border-right: 1px solid var(--lighter-gray);
+}
+
+.modal .modal-content .map {
+  overflow: hidden;
+  /* width: 304px;
+  height: 288px; */
+  flex-shrink: 0;
+}
+.modal .modal-content .map img {
+  object-fit: cover;
+  object-position: center;
+}
+.modal-footer {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-footer button {
+  width: 224px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: var(--blue);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 140%;
+  transition-duration: 200;
+}
+.modal-footer button:hover {
+  background-color: #1a4fcb;
+}
+
+/* 검색조건 (모바일에서) */
+.search-container {
+  display: none;
+}
+
+@media screen and (max-width: 760px) {
+  .search-container {
+    margin: 0 16px;
+    border: 1px solid var(--lighter-gray);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 10px 20px 20px;
+  }
+  .search-container .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 140%;
+  }
+  .search-container .header > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 16px;
+    border: 1px solid var(--lighter-gray);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 120%;
+    color: var(--gray);
+    height: 32px;
+    border-radius: 20px;
+  }
+  .search-container .header > button:hover {
+    background-color: var(--lighter-gray);
+    color: var(--dark-gray);
+  }
+
+  .search-container .contents {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: fit-content;
+  }
+  .search-container .contents > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 120%;
+    white-space: nowrap;
+  }
+  .search-container .contents > div > img:nth-child(1) {
+    width: 18px;
+    padding: 2.5px;
+    margin-right: 2px;
+  }
+  .search-container .contents > div > img:nth-child(3) {
+    width: 8px;
+  }
+
+  .main-header {
+    margin: 0 16px;
+  }
+  .container {
+    padding: 16px 20px;
+  }
+  .res-rental-list {
+    gap: 20px;
+  }
+
+  .res-rental-item {
+    padding: 16px 0;
+    gap: 12px;
+  }
+  .res-rental-item .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 28px;
+  }
+  .res-rental-item .mobile-header > img {
+    width: auto;
+  }
+
+  .res-rental-item .top {
+    flex-direction: column;
+  }
+  .res-rental-item .top .info-wrap {
+    /* 순서 바꾸기 */
+    order: 2;
+  }
+
+  .res-rental-item .top .info-wrap .logo {
+    display: none;
+  }
+  .res-rental-item .top .info-wrap .info {
+    gap: 0;
+  }
+
+  .res-rental-item .top .info-wrap .info .open-modal-button {
+    display: none;
+  }
+  .res-rental-item .top .info-wrap .info .title {
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+  .res-rental-item > .top > .info-wrap .info .sub-title {
+    margin: 0;
+    display: inline-block;
+    font-size: 13px;
+  }
+
+  .res-rental-item > .top > .image-wrap {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 12px;
+  }
+
+  .res-rental-item .desc {
+    border-top: 1px solid var(--lighter-gray);
+    border-bottom: 1px solid var(--lighter-gray);
+  }
+
+  .res-rental-item > .desc .info .title {
+    font-size: 13px;
+    line-height: 140%;
+    font-weight: 700;
+  }
+  .res-rental-item > .desc .info .price div:nth-child(2) {
+    font-size: 12px;
+  }
+  .res-rental-item > .desc .info .price div:nth-child(2) span {
+    letter-spacing: -2%;
+    font-size: 16px;
+    line-height: 120%;
+  }
+  .res-rental-item > .desc .info .button button {
+    width: 80px;
+    height: 36px;
+  }
+
+  .modal-wrapper {
+    transform: translate(-50%, 0);
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    /* top: 30px; */
+  }
+  .modal-header {
+    padding: 30px 20px 0;
+    gap: 8px;
+    flex-direction: row;
+  }
+  .modal-content {
+    flex-direction: column;
+  }
+  .modal .modal-content .info {
+    padding: 20px;
+    gap: 16px;
+  }
+  .modal-footer {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    height: auto;
+  }
+  .modal-footer button {
+    width: 100%;
+    height: 48px;
+    width: 90%;
+    position: absolute;
+  }
+  .modal .map {
+    height: 294px;
+  }
+}

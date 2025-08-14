@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "target": "ES2017",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "baseUrl": ".",
+        "paths": {
+            // "@/*": ["./app/*"],
+            "@ui": ["./app/components/ui/index.ts"], // ← 루트 별칭
+            "@ui/*": ["./app/components/ui/*"],
+            "@features": ["./app/components/features/index.ts"],
+            "@features/*": ["./app/components/features/*"],
+            "@components": ["./app/components/*"],
+            "@libs/*": ["./app/libs/*"]
+        }
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "exclude": ["node_modules"]
+}

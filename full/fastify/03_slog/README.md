@@ -131,3 +131,35 @@ const artivleSchema = Type.Object({
 })
 type TArticle = Static<typeof articleSchema>
 ```
+
+## 인증
+
+-   tokens
+
+    -   access_token: 15분 ~ 1시간 정도의 만료시간
+        -   인증 메인에 해당되는 액세스 토큰이 탈취되더라도 만료시간이 짧아서 사용하기 힘들게 하기 위해 짧음
+        -   클라이언트 메모리에 저장 (js로 로드 가능)
+    -   refresh_token: 1주 혹은 그 이상의 만료시간
+        -   쿠키로 로컬에 저장
+        -   httpOnly라 js 로드 불가능
+
+-   process (Client-Server)
+    1. C => id, password 전송 => S
+    2. C <= response: Access_Token, Refresh_Token <= S
+    3. C => header: Access_Token => S
+    4. C <= response: Data <= S
+    5. C => refresh: Refresh_Token => S // access token 만료 시간에 가까워지면 재발급
+    6. C <= response: Access_Token <= S // 리프레시 토큰이 정상적이면 발급
+
+### 1) 스키마 & 타입 작성
+
+-   typebox 설치
+    `npm i @sinclair/typebox @fastify/type-provider-typebox`
+
+### 2) router 기본 구조 작성
+
+### 3) helper 작성
+
+### 4) 서비스 코드 작성
+
+### 5) route handler 작성

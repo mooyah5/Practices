@@ -1,169 +1,133 @@
-# fastify 첫걸음
+### 플젝 생성
 
-## packages.json
+`npm init -y`
 
-### type: module
+### 프리즈마 설치
 
--   import/export 기능 사용
+`npm i -D prisma`
 
-### scripts
+### SQLite 사용할거임
 
-```
-"scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:build": "tsc -w --project tsconfig.json && npx -p tsconfig.json",
-    "start": "npm run build:live",
-    "build:live": "npx tsx src/main.ts"
-},
-```
+`npx prisma init --datasource-providor sqlite`
 
-`"build:live": "nodemon --watch 'src/' --exec node --loader ts-node/esm src/main.ts --verbose"`
+-   schema/schema.prisma 생성됨
 
--   scripts.build:live (개발 시 서버를 실행할 명령어)
-    -   nodemon: 코드의 변경을 감지하고 재실행
-    -   --watch 'src/': src 폴더의 변화를 감지
-    -   exec
-    -   node --loader: 컴파일러가 바로 ts를 실행하는 ts 로더
-    -   ts-node/esm: ts노드의 esm 옵션 설정
-    -   src/main.ts: 실행 파일
-    -   --verbose: 터미널에 자세한 정보 표시
-
-`"start:build": "tsc -w --project tsconfig.json && npx -p tsconfig.json"`
-
--   작성 코드가 js로 변환되고 dist 폴더에 생성
-
-`"start": "npm run build:live"`
-
--   작성한 빌드 라이브 실행
-
-##
+### prisma scheme 작성
 
 ```
-fastify.route({
-    method: "GET",  // 대문자로!
-    url: '/',
-    schema: {...},
-    preHandler: function (req, res) {...},
-
-})
+model 테이블명 {
+    컬럼명 타입
+}
 ```
 
-## 스키마
+### .env
+
+`DATABASE_URL="file:./prisma/dev.db"`
+
+### Database 마이그레이션
+
+: 설정된 스키마 바탕으로 실제 DB의 테이블 만들기
+`npx prisma migrate dev --name init`
+
+-   --name: 마이그레이션 기록을 남길 폴더명 설정
+
+### vscode extensions: sqlite viewer
+
+dev.db 확인
+
+### db 수정이 필요한 경우, 마이그레이션으로 db 내용 변경
+
+`npx prisma migrate dev --name added_job_title`
+
+-   --name: 마찬가지로 특이점 기록
+
+---
+
+## Prisma로 DB 제어하기 (CRUD)
+
+### DB를 제어하기 위해 @prisma/client 설치하기
+
+`npm i @prisma/client`
+
+### .env 예시
+
+DATABASE_URL="file:./dev.db?connection_limit=1&connect_timeout=30"
+FIRST_PWD = '1234'
+SECRET_KEY = 'my-secret-key'
+HASH_ROUND = 10
+ACCESS_TOKEN_EXPIRES_IN = '60m'
+REFRESH_TOKEN_EXPIRES_IN = '7 days'
+
+### typebox란? 사용 이유 (zod랑 비슷)
+
+-   기존에쓰던 스키마 정의
 
 ```
-const articleSchema = {
-    schema: {
-        headers: {
-            type: 'object', // 헤더 타입
+const articleSchema = {...}
+const readArticleSchema = {
+    headers: {
+        authorization: { type: 'string' }
+    },
+    querystring: {
+        type: 'object',
+        properties: {
+            pageNumber: { type: 'integer' },
+            mode: { type: 'string' }
+        }
+    },
+    response: {
+        200: {
+            type: 'object',
+            required: ['totalPageCount'],
             properties: {
-                // 헤더 프로퍼티, 타입
-                authorization: { type: 'string' },
-            },
-            required: ['authorization'],    // 필수값 지정
-        },
-        response: { // 클라이언트에게 전달되는 응탑 형태 정의
-            200: {
-                type: 'object',
-                properties: { hello : {type: string}}
+                totalPageCount: { type: 'integer' },
+                articleList: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: articleSchema
+                    }
+                }
             }
-
         }
     }
 }
 
-fasity.get("/articles", articleSchema, ascyn (request, reply) => {hello: 'world'} )
 ```
 
----
-
-##
+-   타입박스는 간단하다. (기본적으로 required 옵션임)
 
 ```
-type TBody {
-    title: string;
-    content: string;
+const articleSchema = {...}
+const readArticleSchema = {
+    headers: {
+        authorization: Type.Optional(Type.String())
+    },
+    querystring: Type.Object({
+        pageNumber: Type.Optional(Type.Integer()),
+        mode: Type.Optional(Type.String())
+    }),
+    response: {
+        200: Type.Object({
+            totalPageCount: Type.Integer(),
+            articleList: Type.Array(articleSchema)
+        })
+    }
 }
-fastify.get<{Body: TBody}>("/articles", async (request, reply) => {
-    const {title, content} = request.body
+```
+
+-   타입 정의/재사용 가능
+
+```
+import { Type, Static } from "@sinclair/typebox"
+const artivleSchema = Type.Object({
+    id: Type.Integer(),
+    content: Type.String(),
+    likeCount: Type.Integer(),
+    commentCount: Type.Integer(),
+    userId: Type.Integer(),
+    userEmail: Type.Optional(Type.String()),
+    likeMe: Type.Optional(Type.Boolean())
 })
+type TArticle = Static<typeof articleSchema>
 ```
-
----
-
-##
-
-```
-import {fastifyRequest, fastifyReply} from "fastify"
-
-type TBody {...}
-
-fastiry.route({
-    method: 'GET',
-    ...
-    handler: async (request: FastifyRequest<Body: Tbody>...)
-})
-```
-
-## hook
-
-```
-fastify.addHook("onRequest" (request, reply, done) =>  {
-    doen()
-})
-
-fastify.route({
-    method: 'GET',
-    ...
-    onRequest: function (request, reply, done) {...}
-})
-```
-
--   addHook: 작성된 라우트 종류 상관 ㅇ벗이 모든 라우트에서 해당 항목 적용
--   route 속 명시하는 방식: 필요한 라우팅 시에만 적용
-
-## Application hook
-
-: 라우터에서 발생하는 요청/응답이 아닌, 해당 서버의 자체 훅 (onReady, onClose ...)
-
-```
-fastify.addHook("onReady", (done) => {
-    const err = null
-    done(err)
-})
-
-fastify.addHook("onClose", () => {
-    await loadCacheFromDatabase()
-})
-// 서버의 시작/종료 전처리
-```
-
-## plugin
-
-: Fastify의 기능 확장에 사용 (보통 거대해진 라우트를 주제별로 분리하는 컴포넌트 같은 거임)
-
-```
-const articleRoute = async (fastify: FastifyInstance) {
-    fastify.post(...)
-    fastify.get(...)
-}
-export default articleRoute
-```
-
-```
-import pluginName from "./pluginName"
-fastify.register(pluginName, [options])
-```
-
-```
-import authRoute from "./auth"
-import articleRoute from "./article"
-const routes = async (fastify: FastifyInstance) {
-    await fastify.register(authRoute, {prefix: "/auth"})
-    await fastify.register(articleRoute, {prefix: "/article"})
-}
-fastify.register(routes)
-```
-
-### 플러그인 추가기능 사용
-
-`npm i fastiry-plugin`

@@ -1,0 +1,24 @@
+{
+    "name": "practices",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "postinstall": "node scripts/install-git-as.mjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mooyah5/Practices.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mooyah5/Practices/issues"
+    },
+    "homepage": "https://github.com/mooyah5/Practices#readme"
+}

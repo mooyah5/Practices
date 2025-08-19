@@ -2,7 +2,7 @@ import { Type } from '@sinclair/typebox';
 
 const authBodySchema = Type.Object({
     email: Type.String(),
-    password: Type.String(),
+    pwd: Type.String(),
 });
 
 const body = authBodySchema;

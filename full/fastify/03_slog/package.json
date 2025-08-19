@@ -3,10 +3,9 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "start:build": "tsc -w --project tsconfig.json && npx -p tsconfig.json",
-        "start": "npm run build:live",
-        "build:live": "npx tsx src/main.ts"
+        "build:live": "npx tsx src/main.ts",
+        "start": "npm run build:live"
     },
     "author": "",
     "license": "ISC",

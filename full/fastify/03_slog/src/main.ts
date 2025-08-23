@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+import routes from './routes';
 
 const fastify = Fastify();
 
@@ -7,6 +8,8 @@ const fastify = Fastify();
 fastify.get('/ping', async (req, res) => {
     return 'pong\n';
 });
+
+fastify.register(routes);
 
 const start = async () => {
     try {

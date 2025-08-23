@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")  // DB 경로
+}
+
+// PRISMA SCHEMA 정의
+//// prisma는 다른 ORM들과 다르게 DB 구조를 직접 관리할 수 있다. (테이블 등)
+//// DB 관리 툴을 이용하지 않고 Prisma 만으로도 DB의 테이블 구조 생성/수정/삭제 가능
+
+
+model Post {
+  id        Int      @id @default(autoincrement())  // 중복되지 않는 고유 아이디 => 자동으로 증가되게  
+  title     String 
+  content   String?
+  published Boolean  @default(false)
+  // fields: post 테이블에 유저정보 저장하는 영역
+  // references: 대상 테이블에서 참조할 컬럼
+  // user가 삭제되면 해당 유저를 참조하는 post가 있어, 삭제 시 오류 발생하므로, Cascade 설정.
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
+  authorId  Int?
+}
+
+model User {
+  id    Int    @id @default(autoincrement())
+  email String @unique  // 고유한 값이어야 함
+  name  String?   // ?: null 허용
+  posts Post[]   // 사용자가 작성한 게시글 목록
+}

@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        // async await 등 쓰려면 es2020 이상 필요 es2022 or enodeext
+        "module": "ES2022",
+        "target": "ES2022",
+        "moduleResolution": "Node",
+
+        "esModuleInterop": true,
+        // 빌드 저장될 폴더
+        "outDir": "./dist",
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "isolatedModules": false,
+        "strict": true,
+        "noImplicitAny": true,
+        "useUnknownInCatchVariables": false,
+        "inlineSourceMap": true
+    },
+    // 빌드 시 작성한 코드가 있는 폴더로 안내
+    "include": ["src/**/*"],
+    // 빌드 시 제외할 폴더
+    "exclude": ["document", "backup"],
+    // 임포트 사용 위해 필요
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
+    }
+}

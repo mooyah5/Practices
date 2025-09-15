@@ -1,21 +1,22 @@
 import { Secret } from 'jsonwebtoken';
+import type { StringValue } from 'ms';
 
 const FIRST_PWD = process.env.FIRST_PWD;
 const ROUND = Number(process.env.HASH_ROUND);
 const SECRET_KEY = process.env.SECRET_KEY as Secret;
-const ACCESS_TOKEN_EXPIRE = process.env.ACCESS_TOKEN_EXPIRE;
-const REFRESH_TOKEN_EXPIRE = process.env.REFRESH_TOKEN_EXPIRE;
+const ACCESS_TOKEN_EXPIRES = process.env.ACCESS_TOKEN_EXPIRES as StringValue;
+const REFRESH_TOKEN_EXPIRES = process.env.REFRESH_TOKEN_EXPIRES as StringValue;
 
 const ERROR_MESSAGE = {
     badRequest: {
         success: false,
         status: 400,
-        message: 'Bad request',
+        message: 'Bad Request',
     },
     likeAddError: {
         success: false,
         status: 400,
-        message: 'already Add like',
+        message: 'Already Add Like',
     },
     likeCancelError: {
         success: false,
@@ -34,8 +35,8 @@ const ERROR_MESSAGE = {
     },
     notExpired: {
         success: false,
-        status: 400,
-        message: 'Token not expired',
+        status: 401,
+        message: 'Token Not Expired',
     },
     forbidden: {
         success: false,
@@ -44,66 +45,62 @@ const ERROR_MESSAGE = {
     },
     alreadySignup: {
         success: false,
-        status: 400,
-        message: 'User already signed up',
+        status: 403,
+        message: 'Already Sign Up',
     },
     notFound: {
         success: false,
         status: 404,
-        message: 'Not found',
+        message: 'Not Found',
     },
     preconditionFailed: {
         success: false,
         status: 412,
-        message: 'Precondition failed',
+        message: 'Precondition Failed',
     },
     serverError: {
         success: false,
         status: 500,
-        message: 'Internal server error',
+        message: 'Internal Server Error',
     },
-} as const; // readonly
+} as const;
 
 const SUCCESS_MESSAGE = {
     loginOk: {
         success: true,
-        status: 200,
-        message: 'Login successful',
+        status: 201,
+        message: 'Login Ok!',
     },
-    logoutOk: {
+    logouOk: {
+        success: true,
+        status: 205,
+        message: 'Logout success!',
+    },
+    refreshToken: {
+        success: true,
+        status: 201,
+        message: 'refresh success',
+    },
+    accessTokenOk: {
         success: true,
         status: 200,
-        message: 'Logout successful',
-    },
-    refreshTokenOk: {
-        success: true,
-        status: 200,
-        message: 'Refresh token successful',
-    },
-    accessToken: {
-        success: true,
-        status: 200,
-        message: 'Access token successful',
+        message: 'access token ok',
     },
     registerOk: {
+        status: 201,
         success: true,
-        status: 200,
-        message: 'Registration successful',
+        message: 'register success!',
     },
 } as const;
 
-type ErrorType = {
-    success: boolean;
-    status: number;
-    message: string;
-};
+type ERROR_TYPE = (typeof ERROR_MESSAGE)[keyof typeof ERROR_MESSAGE];
 export {
-    ERROR_MESSAGE,
-    SUCCESS_MESSAGE,
     FIRST_PWD,
     ROUND,
     SECRET_KEY,
-    ACCESS_TOKEN_EXPIRE,
-    REFRESH_TOKEN_EXPIRE,
+    ACCESS_TOKEN_EXPIRES,
+    REFRESH_TOKEN_EXPIRES,
+    ERROR_MESSAGE,
+    SUCCESS_MESSAGE,
+    ERROR_TYPE,
 };
-export type { ErrorType };

@@ -18,4 +18,15 @@ const registerSchema = {
     },
 };
 
-export { authBodySchema, registerSchema };
+const loginSchema = {
+    body,
+    response: {
+        200: Type.Object({
+            id: Type.String(),
+            email: Type.String(),
+            authorization: Type.String(),
+        }),
+    },
+};
+
+export { authBodySchema, registerSchema, loginSchema };
